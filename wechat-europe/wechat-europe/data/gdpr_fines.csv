@@ -1,0 +1,11 @@
+﻿Company,Country,Fine_Amount_EUR_Millions,Year,Violation_Type
+Amazon,Luxembourg,746.0,2021,Cookie Consent
+TikTok,Ireland,345.0,2023,Children Data
+WhatsApp,Ireland,225.0,2021,Transparency
+Google,France,50.0,2022,Cookie Consent
+H&M,Germany,35.0,2020,Employee Monitoring
+TIM (Telecom Italia),Italy,28.0,2020,Marketing Calls
+British Airways,UK,22.0,2020,Data Breach
+Clearview AI,Italy,20.0,2022,Biometric Data
+Marriott,UK,20.0,2020,Data Breach
+Meta (Facebook),Ireland,1.2,2023,Data Processing

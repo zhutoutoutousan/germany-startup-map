@@ -1,0 +1,149 @@
+\documentclass[11pt,a4paper]{book}
+
+% Multilingual support - requires XeLaTeX or LuaLaTeX
+\usepackage{fontspec}
+\usepackage{xeCJK}  % Better Chinese font support, especially for Overleaf
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setotherlanguages{chinese,german}
+
+% Chinese font setup for Overleaf using xeCJK
+% IMPORTANT: Overleaf may not have Chinese fonts installed by default
+% If you get font errors, try the options below in order, or comment out all font lines
+
+% Option 1: Try Noto Sans CJK SC first (comment out if it doesn't work)
+% \setCJKmainfont{Noto Sans CJK SC}
+% \setCJKsansfont{Noto Sans CJK SC}
+
+% Option 2: If Noto doesn't work, try Source Han Sans SC
+% \setCJKmainfont{Source Han Sans SC}
+% \setCJKsansfont{Source Han Sans SC}
+
+% Option 3: If neither works, try WenQuanYi Micro Hei
+% \setCJKmainfont{WenQuanYi Micro Hei}
+% \setCJKsansfont{WenQuanYi Micro Hei}
+
+% Option 4: If fonts still don't work, comment out all \setCJK* lines above
+% The document will compile but Chinese text may not display correctly
+% To add fonts to Overleaf: Menu → Fonts → Add fonts from your computer
+
+% For now, commenting out to allow compilation - uncomment one of the options above
+% if you have Chinese fonts available in Overleaf
+
+% German font setup (uses default, can be customized)
+\newfontfamily\germanfont{Latin Modern Roman}
+
+% Page layout
+\usepackage[top=2.5cm,bottom=2.5cm,left=3cm,right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\setlength{\headheight}{27pt} % Fix fancyhdr warning
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\leftmark}
+\fancyhead[RO]{\rightmark}
+\fancyfoot[C]{\thepage}
+
+% Table of contents
+\usepackage{tocloft}
+\renewcommand{\cftchapfont}{\normalfont\bfseries}
+
+% Hyperlinks
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Germany Startup Guide: A Comprehensive Business Guide for Chinese Entrepreneurs},
+    pdfauthor={Germany Startup Map Platform}
+}
+
+% Graphics
+\usepackage{graphicx}
+
+% TikZ for professional diagrams
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,calc,decorations.pathreplacing,shapes.geometric,fit,backgrounds,matrix}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Title page
+\title{\textbf{Germany Startup Guide}\\
+\large A Comprehensive Business Guide for Chinese Entrepreneurs\\
+\large 德国创业指南：中国企业家综合商业指南\\
+\large Deutschland Startup-Leitfaden: Umfassender Geschäftsführer für chinesische Unternehmer}
+\author{Germany Startup Map Platform}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\frontmatter
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+% Preface
+\chapter*{Preface / 前言 / Vorwort}
+\addcontentsline{toc}{chapter}{Preface / 前言 / Vorwort}
+
+This comprehensive guide is designed to assist Chinese entrepreneurs who are considering starting a business in Germany. The guide covers essential information about immigration, business setup, legal requirements, and practical resources for various business types. Additionally, this guide serves as the foundation for the Germany Startup Map platform - a comprehensive ecosystem connecting entrepreneurs with resources, services, and opportunities.
+
+本综合指南旨在帮助考虑在德国创业的中国企业家。本指南涵盖移民、企业设立、法律要求以及各种商业类型的实用资源等重要信息。此外，本指南是德国创业地图平台的基础 - 一个连接企业家与资源、服务和机会的综合生态系统。
+
+Dieser umfassende Leitfaden soll chinesischen Unternehmern helfen, die erwägen, in Deutschland ein Unternehmen zu gründen. Der Leitfaden behandelt wesentliche Informationen über Einwanderung, Unternehmensgründung, rechtliche Anforderungen und praktische Ressourcen für verschiedene Geschäftstypen. Darüber hinaus dient dieser Leitfaden als Grundlage für die Germany Startup Map-Plattform - ein umfassendes Ökosystem, das Unternehmer mit Ressourcen, Dienstleistungen und Möglichkeiten verbindet.
+
+\mainmatter
+
+% Chapter 1: Introduction - Why Germany
+\input{chapters/chapter01_why_germany}
+
+% Chapter 2: How to Get to Germany
+\input{chapters/chapter02_how_to_get_to_germany}
+
+% Chapter 3: Business Types Overview
+\input{chapters/chapter03_business_types}
+
+% Chapter 4: Restaurant Business
+\input{chapters/chapter04_restaurant}
+
+% Chapter 5: Boutique and Retail Business
+\input{chapters/chapter05_boutique_retail}
+
+% Chapter 6: Family Business
+\input{chapters/chapter06_family_business}
+
+% Chapter 7: E-Commerce Business
+\input{chapters/chapter07_ecommerce}
+
+% Chapter 8: Business Real Estate and Location Selection
+\input{chapters/chapter08_real_estate}
+
+% Chapter 9: Supply Chain and Wholesale (Großhandel)
+\input{chapters/chapter09_supply_chain}
+
+% Chapter 10: Opening a School - Legal Requirements
+\input{chapters/chapter10_school_legal}
+
+% Chapter 11: General Legal Requirements
+\input{chapters/chapter11_legal_requirements}
+
+% Chapter 12: Resources and Information Sources
+\input{chapters/chapter12_resources}
+
+% Chapter 13: Platform Economy and Ecosystem Building
+\input{chapters/chapter13_platform_ecosystem}
+
+% Chapter 14: MVP Development and Technical Platform
+\input{chapters/chapter14_mvp_platform}
+
+\backmatter
+
+% Appendix
+\appendix
+\chapter{Useful Contacts and Addresses}
+\chapter{Glossary of Terms}
+
+\end{document}

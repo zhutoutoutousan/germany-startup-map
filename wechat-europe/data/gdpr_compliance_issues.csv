@@ -1,0 +1,7 @@
+﻿Issue,EU_Requirement,Status,Source
+Data Processing Authorization,Explicit consent required for each use,Implemented (but cumbersome),User testimonials
+Data Storage Location,Data must be stored in EU servers,Compliant,EU WeChat Terms of Service
+Data Export Function,GDPR-mandated feature (currently broken),Broken since April 2021,User testimonials
+Privacy Policy Compliance,Strict privacy protection guidelines,Implemented,EU WeChat Privacy Policy
+Third-party Service Authorization,Separate authorization for each service,Implemented,User testimonials
+Contact Data Transfer,Concerns about data transfer to China,Legal concerns raised,Legal consultation services

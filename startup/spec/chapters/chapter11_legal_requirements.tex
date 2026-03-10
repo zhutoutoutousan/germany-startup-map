@@ -1,0 +1,697 @@
+\chapter{General Legal Requirements / 一般法律要求 / Allgemeine rechtliche Anforderungen}
+
+\section{Introduction / 介绍 / Einführung}
+
+This chapter covers the general legal requirements that apply to all businesses in Germany, including business registration, tax obligations, employment law, and compliance requirements.
+
+本章涵盖适用于德国所有企业的一般法律要求，包括商业登记、税务义务、劳动法和合规要求。
+
+Dieses Kapitel behandelt die allgemeinen rechtlichen Anforderungen, die für alle Unternehmen in Deutschland gelten, einschließlich Gewerbeanmeldung, Steuerpflichten, Arbeitsrecht und Compliance-Anforderungen.
+
+\subsection{Business Registration Process / 商业登记流程 / Gewerbeanmeldungsprozess}
+
+Figure~\ref{fig:registration_process} shows the step-by-step process for business registration in Germany, from initial preparation to receiving the trade license.
+
+图~\ref{fig:registration_process}显示了在德国进行商业登记的逐步流程，从初始准备到获得贸易许可证。
+
+Abbildung~\ref{fig:registration_process} zeigt den Schritt-für-Schritt-Prozess der Gewerbeanmeldung in Deutschland, von der ersten Vorbereitung bis zur Erteilung der Gewerbeerlaubnis.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+    node distance=1.2cm,
+    process/.style={rectangle, draw, fill=blue!20, text width=3.5cm, text centered, rounded corners, minimum height=1cm},
+    decision/.style={diamond, draw, fill=yellow!20, text width=2.5cm, text centered, aspect=2},
+    startend/.style={ellipse, draw, fill=green!20, text width=2.5cm, text centered},
+    arrow/.style={->, >=stealth, thick}
+]
+    % Process flow
+    \node [startend] (start) {Start / 开始 / Start};
+    \node [process, below of=start] (prep) {Prepare Documents / 准备文件 / Dokumente vorbereiten};
+    \node [process, below of=prep] (form) {Complete Form / 填写表格 / Formular ausfüllen};
+    \node [process, below of=form] (submit) {Submit to Gewerbeamt / 提交给Gewerbeamt / Bei Gewerbeamt einreichen};
+    \node [decision, below of=submit] (check) {All OK? / 全部OK? / Alles OK?};
+    \node [process, right of=check, xshift=2.5cm] (approve) {Receive Gewerbeschein / 获得Gewerbeschein / Gewerbeschein erhalten};
+    \node [process, below of=approve] (notify) {Tax Office Notified / 税务局已通知 / Finanzamt benachrichtigt};
+    \node [startend, below of=notify] (end) {Ready to Operate / 可以运营 / Betriebsbereit};
+    \node [process, left of=check, xshift=-2.5cm] (fix) {Fix Issues / 修复问题 / Probleme beheben};
+    
+    % Arrows
+    \draw [arrow] (start) -- (prep);
+    \draw [arrow] (prep) -- (form);
+    \draw [arrow] (form) -- (submit);
+    \draw [arrow] (submit) -- (check);
+    \draw [arrow] (check) -- node[above] {Yes / 是 / Ja} (approve);
+    \draw [arrow] (check) -- node[above] {No / 否 / Nein} (fix);
+    \draw [arrow] (fix) |- (form);
+    \draw [arrow] (approve) -- (notify);
+    \draw [arrow] (notify) -- (end);
+\end{tikzpicture}
+\caption{Business Registration Process / 商业登记流程 / Gewerbeanmeldungsprozess}
+\label{fig:registration_process}
+\end{figure}
+
+\section{Business Registration and Legal Forms / 商业登记和法律形式 / Gewerbeanmeldung und Rechtsformen}
+
+\subsection{Legal Entity Types Comparison / 法律实体类型比较 / Rechtsform-Vergleich}
+
+Figure~\ref{fig:legal_entities} provides a visual comparison of the main legal entity types available in Germany, showing key characteristics including capital requirements, liability, and suitability for different business sizes.
+
+图~\ref{fig:legal_entities}提供了德国主要法律实体类型的视觉比较，显示了包括资本要求、责任和适合不同企业规模的关键特征。
+
+Abbildung~\ref{fig:legal_entities} bietet einen visuellen Vergleich der wichtigsten Rechtsformen in Deutschland und zeigt Schlüsselmerkmale wie Kapitalanforderungen, Haftung und Eignung für verschiedene Unternehmensgrößen.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+    node distance=2cm,
+    entity/.style={rectangle, draw, fill=blue!10, text width=4cm, text centered, minimum height=2cm, rounded corners},
+    label/.style={text width=3cm, text centered, font=\small},
+    arrow/.style={->, >=stealth, thick}
+]
+    % Entities
+    \node [entity] (einzel) at (0,0) {
+        \textbf{Einzelunternehmen}\\
+        \small 独资企业\\
+        \small Sole Proprietorship\\
+        \vspace{0.2cm}
+        \tiny Capital: €0\\
+        \tiny Liability: Unlimited\\
+        \tiny 资本：0欧元\\
+        \tiny 责任：无限
+    };
+    
+    \node [entity] (ug) at (5,0) {
+        \textbf{UG}\\
+        \small 创业公司\\
+        \small Mini-GmbH\\
+        \vspace{0.2cm}
+        \tiny Capital: €1+\\
+        \tiny Liability: Limited\\
+        \tiny 资本：1欧元+\\
+        \tiny 责任：有限
+    };
+    
+    \node [entity] (gmbh) at (10,0) {
+        \textbf{GmbH}\\
+        \small 有限责任公司\\
+        \small Limited Liability\\
+        \vspace{0.2cm}
+        \tiny Capital: €25,000\\
+        \tiny Liability: Limited\\
+        \tiny 资本：25,000欧元\\
+        \tiny 责任：有限
+    };
+    
+    % Characteristics below
+    \node [label, below of=einzel, yshift=0.5cm] (char1) {
+        \tiny Simple Setup\\
+        \tiny 简单设置\\
+        \tiny Einfache Gründung
+    };
+    
+    \node [label, below of=ug, yshift=0.5cm] (char2) {
+        \tiny Quick Start\\
+        \tiny 快速启动\\
+        \tiny Schneller Start
+    };
+    
+    \node [label, below of=gmbh, yshift=0.5cm] (char3) {
+        \tiny Professional\\
+        \tiny 专业\\
+        \tiny Professionell
+    };
+    
+    % Suitability arrows
+    \node [label, below of=char1, yshift=0.3cm] (suit1) {
+        \tiny Small Business\\
+        \tiny 小企业\\
+        \tiny Kleines Unternehmen
+    };
+    
+    \node [label, below of=char2, yshift=0.3cm] (suit2) {
+        \tiny Startup\\
+        \tiny 初创企业\\
+        \tiny Startup
+    };
+    
+    \node [label, below of=char3, yshift=0.3cm] (suit3) {
+        \tiny Established\\
+        \tiny 成熟企业\\
+        \tiny Etabliert
+    };
+    
+    % Connection lines
+    \draw [arrow, dashed] (einzel) -- (char1);
+    \draw [arrow, dashed] (ug) -- (char2);
+    \draw [arrow, dashed] (gmbh) -- (char3);
+    \draw [arrow, dashed] (char1) -- (suit1);
+    \draw [arrow, dashed] (char2) -- (suit2);
+    \draw [arrow, dashed] (char3) -- (suit3);
+\end{tikzpicture}
+\caption{Legal Entity Types Comparison / 法律实体类型比较 / Rechtsform-Vergleich}
+\label{fig:legal_entities}
+\end{figure}
+
+\subsection{Business Registration (Gewerbeanmeldung) / 商业登记（Gewerbeanmeldung）}
+
+The Gewerbeanmeldung (trade registration) is the first mandatory step for most businesses in Germany. This registration must be completed before commencing any commercial activity.
+
+Gewerbeanmeldung（贸易登记）是德国大多数企业的第一个强制性步骤。必须在开始任何商业活动之前完成此登记。
+
+Die Gewerbeanmeldung ist der erste obligatorische Schritt für die meisten Unternehmen in Deutschland. Diese Registrierung muss vor Aufnahme jeder gewerblichen Tätigkeit abgeschlossen werden.
+
+\textbf{Registration Process:}
+\begin{itemize}
+    \item \textbf{Where to Register}: At the local trade office (Gewerbeamt) or citizens' office (Bürgeramt) in the municipality where your business will operate
+    \item 登记地点：在您企业将运营的市镇的当地贸易办公室（Gewerbeamt）或公民办公室（Bürgeramt）
+    \item Wo registrieren: Beim örtlichen Gewerbeamt oder Bürgeramt in der Gemeinde, in der Ihr Unternehmen tätig sein wird
+    
+    \item \textbf{Timing}: Must be completed before starting business operations. Registration can be done in person or sometimes online, depending on the municipality
+    \item 时间：必须在开始业务运营之前完成。可以亲自或有时在线完成登记，具体取决于市镇
+    \item Zeitpunkt: Muss vor Aufnahme der Geschäftstätigkeit abgeschlossen werden. Registrierung persönlich oder online möglich
+    
+    \item \textbf{Processing Time}: Typically 1-2 weeks, but can be immediate if all documents are in order
+    \item 处理时间：通常为1-2周，但如果所有文件齐全，可以立即处理
+    \item Bearbeitungszeit: Typischerweise 1-2 Wochen, kann aber sofort sein, wenn alle Dokumente in Ordnung sind
+\end{itemize}
+
+\textbf{Required Documents:}
+\begin{itemize}
+    \item Valid passport or ID card
+    \item 有效护照或身份证
+    \item Gültiger Reisepass oder Personalausweis
+    
+    \item Proof of residence (Anmeldung confirmation from Bürgeramt)
+    \item 居住证明（来自Bürgeramt的Anmeldung确认）
+    \item Wohnsitznachweis (Anmeldebestätigung vom Bürgeramt)
+    
+    \item Completed registration form (Gewerbeanmeldung form)
+    \item 填写的登记表（Gewerbeanmeldung表格）
+    \item Ausgefülltes Anmeldeformular (Gewerbeanmeldungsformular)
+    
+    \item Description of business activities (detailed description of what you will do)
+    \item 商业活动描述（您将做什么的详细描述）
+    \item Beschreibung der Geschäftstätigkeiten (detaillierte Beschreibung Ihrer Tätigkeit)
+    
+    \item For certain regulated professions: proof of qualifications or licenses
+    \item 对于某些受监管的职业：资格或执照证明
+    \item Für bestimmte reglementierte Berufe: Nachweis von Qualifikationen oder Lizenzen
+\end{itemize}
+
+\textbf{Registration Fees:}
+\begin{itemize}
+    \item Basic registration: €15-65 depending on municipality (one-time fee)
+    \item 基本登记：根据市镇不同，15-65欧元（一次性费用）
+    \item Grundregistrierung: 15-65 Euro je nach Gemeinde (einmalige Gebühr)
+    
+    \item Additional fees may apply for certain business types or if professional assessment is required
+    \item 某些商业类型或如果需要专业评估，可能适用额外费用
+    \item Zusätzliche Gebühren können für bestimmte Geschäftstypen oder bei erforderlicher fachlicher Prüfung anfallen
+\end{itemize}
+
+\textbf{Important Notes:}
+\begin{itemize}
+    \item Registration is mandatory for most commercial activities (exceptions: freelancers, certain professional services)
+    \item 大多数商业活动必须登记（例外：自由职业者、某些专业服务）
+    \item Registrierung ist für die meisten gewerblichen Tätigkeiten obligatorisch (Ausnahmen: Freiberufler, bestimmte freie Berufe)
+    
+    \item You will receive a Gewerbeschein (trade license) upon successful registration
+    \item 成功登记后，您将收到Gewerbeschein（贸易许可证）
+    \item Bei erfolgreicher Registrierung erhalten Sie einen Gewerbeschein
+    
+    \item Registration automatically notifies tax authorities, who will contact you for tax number
+    \item 登记会自动通知税务部门，他们将联系您获取税号
+    \item Registrierung benachrichtigt automatisch die Steuerbehörden, die Sie für Steuernummer kontaktieren werden
+    
+    \item Must update registration if business activities change significantly
+    \item 如果商业活动发生重大变化，必须更新登记
+    \item Registrierung muss aktualisiert werden, wenn sich Geschäftstätigkeiten erheblich ändern
+\end{itemize}
+
+\subsection{Legal Business Forms / 法律商业形式 / Rechtliche Geschäftsformen}
+\begin{itemize}
+    \item Sole proprietorship (Einzelunternehmen)
+    \item 独资企业（Einzelunternehmen）
+    \item Einzelunternehmen
+    \item Partnership (GbR, OHG, KG)
+    \item 合伙企业（GbR、OHG、KG）
+    \item Personengesellschaften (GbR, OHG, KG)
+    \item Limited liability company (GmbH)
+    \item 有限责任公司（GmbH）
+    \item Gesellschaft mit beschränkter Haftung (GmbH)
+    \item Entrepreneurial company (UG)
+    \item 创业公司（UG）
+    \item Unternehmergesellschaft (UG)
+    \item Stock corporation (AG)
+    \item 股份公司（AG）
+    \item Aktiengesellschaft (AG)
+\end{itemize}
+
+\section{Tax Obligations / 税务义务 / Steuerpflichten}
+
+\subsection{Tax Registration / 税务登记 / Steuerregistrierung}
+\begin{itemize}
+    \item Tax number application (Steuernummer)
+    \item 税号申请（Steuernummer）
+    \item Steuernummer beantragen
+    \item VAT registration (Umsatzsteuer-ID)
+    \item 增值税登记（Umsatzsteuer-ID）
+    \item Umsatzsteuer-ID-Registrierung
+    \item Tax office assignment
+    \item 税务局分配
+    \item Finanzamtszuweisung
+\end{itemize}
+
+\subsection{German Tax Structure / 德国税收结构 / Deutsche Steuerstruktur}
+
+Figure~\ref{fig:tax_structure} illustrates the hierarchical structure of German taxes applicable to businesses, showing how different tax types apply to various business structures.
+
+图~\ref{fig:tax_structure}说明了适用于企业的德国税收的层次结构，显示了不同税种如何适用于各种商业结构。
+
+Abbildung~\ref{fig:tax_structure} veranschaulicht die hierarchische Struktur der deutschen Steuern für Unternehmen und zeigt, wie verschiedene Steuerarten auf verschiedene Geschäftsstrukturen anwendbar sind.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+    level 1/.style={sibling distance=4cm, level distance=2cm},
+    level 2/.style={sibling distance=2cm, level distance=1.5cm},
+    every node/.style={rectangle, draw, fill=blue!10, text width=3cm, text centered, rounded corners},
+    tax/.style={fill=red!20},
+    rate/.style={fill=green!20, text width=2.5cm, font=\small}
+]
+    % Root
+    \node [tax] (root) {German Taxes / 德国税收 / Deutsche Steuern}
+        child {
+            node [tax] {Income Tax / 所得税 / Einkommensteuer}
+            child {
+                node [rate] {0-45\%\\Sole Prop / 独资 / Einzel}
+            }
+        }
+        child {
+            node [tax] {Corporate Tax / 公司税 / Körperschaftsteuer}
+            child {
+                node [rate] {15\%\\GmbH/UG / 公司 / Kapitalges.}
+            }
+        }
+        child {
+            node [tax] {VAT / 增值税 / Umsatzsteuer}
+            child {
+                node [rate] {19\% Standard / 标准 / Standard}
+            }
+            child {
+                node [rate] {7\% Reduced / 降低 / Ermäßigt}
+            }
+        }
+        child {
+            node [tax] {Trade Tax / 营业税 / Gewerbesteuer}
+            child {
+                node [rate] {7-15\%\\Municipal / 市政 / Kommunal}
+            }
+        }
+        child {
+            node [tax] {Solidarity / 团结税 / Solidarität}
+            child {
+                node [rate] {5.5\%\\Surcharge / 附加费 / Zuschlag}
+            }
+        };
+\end{tikzpicture}
+\caption{German Tax Structure / 德国税收结构 / Deutsche Steuerstruktur}
+\label{fig:tax_structure}
+\end{figure}
+
+\subsection{Tax Types / 税种 / Steuerarten}
+
+Germany has a multi-layered tax system that businesses must navigate. Understanding each tax type is crucial for proper compliance and financial planning.
+
+德国有一个多层次税收制度，企业必须应对。了解每种税种对于合规和财务规划至关重要。
+
+Deutschland hat ein mehrschichtiges Steuersystem, das Unternehmen bewältigen müssen. Das Verständnis jeder Steuerart ist entscheidend für ordnungsgemäße Compliance und Finanzplanung.
+
+\begin{itemize}
+    \item \textbf{Income Tax (Einkommensteuer)} / \textbf{所得税（Einkommensteuer）} / \textbf{Einkommensteuer}
+    \begin{itemize}
+        \item Applies to sole proprietorships (Einzelunternehmen) and partnerships
+        \item 适用于独资企业（Einzelunternehmen）和合伙企业
+        \item Gilt für Einzelunternehmen und Personengesellschaften
+        \item Progressive rates from 0\% to 45\% (2024: 14\%-45\% with tax-free allowance of €11,604)
+        \item 累进税率从0\%到45\%（2024年：14\%-45\%，免税津贴11,604欧元）
+        \item Progressive Sätze von 0\% bis 45\% (2024: 14\%-45\% mit Freibetrag von 11.604 Euro)
+        \item Calculated on business profits after deductions
+        \item 在扣除后按营业利润计算
+        \item Wird auf Geschäftsgewinne nach Abzügen berechnet
+    \end{itemize}
+    
+    \item \textbf{Corporate Tax (Körperschaftsteuer)} / \textbf{公司税（Körperschaftsteuer）} / \textbf{Körperschaftsteuer}
+    \begin{itemize}
+        \item Applies to GmbH, UG, AG (corporations)
+        \item 适用于GmbH、UG、AG（公司）
+        \item Gilt für GmbH, UG, AG (Kapitalgesellschaften)
+        \item Flat rate of 15\% on taxable profits
+        \item 应税利润的固定税率为15\%
+        \item Pauschalsatz von 15\% auf steuerpflichtige Gewinne
+        \item Plus solidarity surcharge of 5.5\% on corporate tax = effective rate of 15.825\%
+        \item 加上公司税5.5\%的团结附加税 = 有效税率15.825\%
+        \item Zuzüglich Solidaritätszuschlag von 5,5\% auf Körperschaftsteuer = effektiver Satz von 15,825\%
+        \item Combined with trade tax, total corporate tax burden typically 30-35\%
+        \item 与营业税结合，公司总税负通常为30-35\%
+        \item Zusammen mit Gewerbesteuer beträgt die gesamte Unternehmenssteuerbelastung typischerweise 30-35\%
+    \end{itemize}
+    
+    \item \textbf{Value-Added Tax (Umsatzsteuer/VAT)} / \textbf{增值税（Umsatzsteuer）} / \textbf{Mehrwertsteuer (Umsatzsteuer)}
+    \begin{itemize}
+        \item Standard rate: 19\% on most goods and services
+        \item 标准税率：大多数商品和服务为19\%
+        \item Standardsatz: 19\% auf die meisten Waren und Dienstleistungen
+        \item Reduced rate: 7\% for certain items (food, books, public transport, hotel accommodation)
+        \item 降低税率：某些项目为7\%（食品、书籍、公共交通、酒店住宿）
+        \item Ermäßigter Satz: 7\% für bestimmte Artikel (Lebensmittel, Bücher, öffentlicher Verkehr, Hotelunterkunft)
+        \item Registration required if annual turnover exceeds €22,000 (2024 threshold)
+        \item 如果年营业额超过22,000欧元（2024年门槛），需要登记
+        \item Registrierung erforderlich, wenn der Jahresumsatz 22.000 Euro überschreitet (2024-Schwelle)
+        \item Monthly, quarterly, or annual VAT returns depending on turnover
+        \item 根据营业额按月、按季度或按年提交增值税申报
+        \item Monatliche, vierteljährliche oder jährliche Umsatzsteuervoranmeldungen je nach Umsatz
+        \item Input VAT can be reclaimed on business expenses
+        \item 进项增值税可以在业务费用中收回
+        \item Vorsteuer kann auf Geschäftsausgaben zurückgefordert werden
+    \end{itemize}
+    
+    \item \textbf{Trade Tax (Gewerbesteuer)} / \textbf{营业税（Gewerbesteuer）} / \textbf{Gewerbesteuer}
+    \begin{itemize}
+        \item Municipal tax on business profits, rates vary by location (7\%-15\% typically)
+        \item 对营业利润征收的市政税，税率因地点而异（通常为7\%-15\%）
+        \item Kommunale Steuer auf Geschäftsgewinne, Sätze variieren je nach Standort (typischerweise 7\%-15\%)
+        \item Base rate: 3.5\% of taxable profit, multiplied by municipal multiplier (Hebesatz)
+        \item 基本税率：应税利润的3.5\%，乘以市政乘数（Hebesatz）
+        \item Grundsatz: 3,5\% des steuerpflichtigen Gewinns, multipliziert mit kommunalem Hebesatz
+        \item Example: Berlin 2024: Hebesatz 410\% = 14.35\% effective rate
+        \item 示例：柏林2024年：Hebesatz 410\% = 有效税率14.35\%
+        \item Beispiel: Berlin 2024: Hebesatz 410\% = effektiver Satz 14,35\%
+        \item Munich 2024: Hebesatz 490\% = 17.15\% effective rate
+        \item 慕尼黑2024年：Hebesatz 490\% = 有效税率17.15\%
+        \item München 2024: Hebesatz 490\% = effektiver Satz 17,15\%
+        \item Freibetrag (allowance): €24,500 for sole proprietorships/partnerships, no allowance for corporations
+        \item 免税额（Freibetrag）：独资企业/合伙企业24,500欧元，公司无免税额
+        \item Freibetrag: 24.500 Euro für Einzelunternehmen/Personengesellschaften, kein Freibetrag für Kapitalgesellschaften
+    \end{itemize}
+    
+    \item \textbf{Solidarity Surcharge (Solidaritätszuschlag)} / \textbf{团结附加税（Solidaritätszuschlag）} / \textbf{Solidaritätszuschlag}
+    \begin{itemize}
+        \item Additional 5.5\% surcharge on income tax and corporate tax
+        \item 所得税和公司税额外5.5\%的附加费
+        \item Zusätzlicher Zuschlag von 5,5\% auf Einkommensteuer und Körperschaftsteuer
+        \item Applies to all businesses, no exemptions
+        \item 适用于所有企业，无豁免
+        \item Gilt für alle Unternehmen, keine Ausnahmen
+        \item Currently under discussion for potential reduction/elimination
+        \item 目前正在讨论可能减少/取消
+        \item Derzeit in Diskussion für mögliche Reduzierung/Abschaffung
+    \end{itemize}
+\end{itemize}
+
+\subsection{Tax Compliance / 税务合规性 / Steuer-Compliance}
+\begin{itemize}
+    \item Annual tax returns
+    \item 年度纳税申报
+    \item Jährliche Steuererklärungen
+    \item Monthly/quarterly VAT returns
+    \item 月度/季度增值税申报
+    \item Monatliche/vierteljährliche Umsatzsteuervoranmeldungen
+    \item Record keeping requirements
+    \item 记录保存要求
+    \item Aufzeichnungspflichten
+    \item Tax advisor requirements
+    \item 税务顾问要求
+    \item Steuerberateranforderungen
+\end{itemize}
+
+\section{Employment Law / 劳动法 / Arbeitsrecht}
+
+\subsection{Hiring Employees / 雇佣员工 / Mitarbeitereinstellung}
+\begin{itemize}
+    \item Employment contract requirements
+    \item 雇佣合同要求
+    \item Arbeitsvertragsanforderungen
+    \item Work permits for foreign employees
+    \item 外籍员工的工作许可
+    \item Arbeitserlaubnisse für ausländische Mitarbeiter
+    \item Minimum wage requirements
+    \item 最低工资要求
+    \item Mindestlohnanforderungen
+    \item Social security registration
+    \item 社会保险登记
+    \item Sozialversicherungsregistrierung
+\end{itemize}
+
+\subsection{Employee Rights and Protections / 员工权利和保护 / Arbeitnehmerrechte und -schutz}
+\begin{itemize}
+    \item Working hours regulations
+    \item 工作时间规定
+    \item Arbeitszeitvorschriften
+    \item Vacation and leave entitlements
+    \item 假期和休假权利
+    \item Urlaubs- und Freistellungsansprüche
+    \item Protection against dismissal
+    \item 解雇保护
+    \item Kündigungsschutz
+    \item Equal treatment and anti-discrimination
+    \item 平等待遇和反歧视
+    \item Gleichbehandlung und Antidiskriminierung
+\end{itemize}
+
+\subsection{Social Security Contributions / 社会保险缴费 / Sozialversicherungsbeiträge}
+\begin{itemize}
+    \item Health insurance contributions
+    \item 健康保险缴费
+    \item Krankenversicherungsbeiträge
+    \item Pension insurance (Rentenversicherung)
+    \item 养老金保险（Rentenversicherung）
+    \item Rentenversicherung
+    \item Unemployment insurance
+    \item 失业保险
+    \item Arbeitslosenversicherung
+    \item Long-term care insurance
+    \item 长期护理保险
+    \item Pflegeversicherung
+\end{itemize}
+
+\section{Commercial Law / 商法 / Handelsrecht}
+
+\subsection{Commercial Code (HGB) Requirements / 商法典（HGB）要求 / Handelsgesetzbuch (HGB)-Anforderungen}
+\begin{itemize}
+    \item Commercial register entry (Handelsregister)
+    \item 商业登记簿登记（Handelsregister）
+    \item Handelsregistereintragung
+    \item Accounting requirements
+    \item 会计要求
+    \item Buchhaltungsanforderungen
+    \item Annual financial statements
+    \item 年度财务报表
+    \item Jahresabschlüsse
+    \item Audit requirements (for larger companies)
+    \item 审计要求（适用于较大公司）
+    \item Prüfungsanforderungen (für größere Unternehmen)
+\end{itemize}
+
+\subsection{Contract Law / 合同法 / Vertragsrecht}
+\begin{itemize}
+    \item General terms and conditions (AGB)
+    \item 一般条款和条件（AGB）
+    \item Allgemeine Geschäftsbedingungen (AGB)
+    \item Consumer protection in contracts
+    \item 合同中的消费者保护
+    \item Verbraucherschutz in Verträgen
+    \item Contract formation requirements
+    \item 合同订立要求
+    \item Vertragsabschlussanforderungen
+\end{itemize}
+
+\section{Data Protection and Privacy (GDPR) / 数据保护和隐私（GDPR） / Datenschutz und Privatsphäre (DSGVO)}
+
+\subsection{GDPR Compliance / GDPR合规性 / DSGVO-Compliance}
+\begin{itemize}
+    \item Data protection officer requirements
+    \item 数据保护官要求
+    \item Datenschutzbeauftragten-Anforderungen
+    \item Privacy policy requirements
+    \item 隐私政策要求
+    \item Datenschutzerklärungsanforderungen
+    \item Data processing agreements
+    \item 数据处理协议
+    \item Datenverarbeitungsvereinbarungen
+    \item Consent management
+    \item 同意管理
+    \item Einwilligungsverwaltung
+\end{itemize}
+
+\subsection{Data Security Requirements / 数据安全要求 / Datensicherheitsanforderungen}
+\begin{itemize}
+    \item Technical and organizational measures
+    \item 技术和组织措施
+    \item Technische und organisatorische Maßnahmen
+    \item Data breach notification
+    \item 数据泄露通知
+    \item Datenschutzverletzungsbenachrichtigung
+    \item Record of processing activities
+    \item 处理活动记录
+    \item Verzeichnis der Verarbeitungstätigkeiten
+\end{itemize}
+
+\section{Intellectual Property / 知识产权 / Geistiges Eigentum}
+
+\subsection{Trademark Protection / 商标保护 / Markenschutz}
+\begin{itemize}
+    \item Trademark registration
+    \item 商标注册
+    \item Markenregistrierung
+    \item EU trademark (EUTM)
+    \item 欧盟商标（EUTM）
+    \item EU-Marke (EUTM)
+    \item Trademark search and clearance
+    \item 商标搜索和清理
+    \item Markenrecherche und -prüfung
+\end{itemize}
+
+\subsection{Copyright and Patents / 版权和专利 / Urheberrecht und Patente}
+\begin{itemize}
+    \item Copyright protection
+    \item 版权保护
+    \item Urheberrechtsschutz
+    \item Patent registration
+    \item 专利注册
+    \item Patentregistrierung
+    \item Design protection
+    \item 设计保护
+    \item Designschutz
+\end{itemize}
+
+\section{Industry-Specific Regulations / 行业特定法规 / Branchenspezifische Vorschriften}
+
+\subsection{Food and Beverage Regulations / 食品和饮料法规 / Lebensmittel- und Getränkevorschriften}
+\begin{itemize}
+    \item Food safety regulations
+    \item 食品安全法规
+    \item Lebensmittelsicherheitsvorschriften
+    \item Labeling requirements
+    \item 标签要求
+    \item Kennzeichnungsanforderungen
+    \item Allergen information
+    \item 过敏原信息
+    \item Allergeninformationen
+\end{itemize}
+
+\subsection{Retail Regulations / 零售法规 / Einzelhandelsvorschriften}
+\begin{itemize}
+    \item Opening hours regulations
+    \item 营业时间规定
+    \item Ladenschlussgesetz
+    \item Product liability
+    \item 产品责任
+    \item Produkthaftung
+    \item Return and refund policies
+    \item 退货和退款政策
+    \item Rückgabe- und Rückerstattungsrichtlinien
+\end{itemize}
+
+\section{Environmental Regulations / 环境法规 / Umweltvorschriften}
+
+\subsection{Environmental Compliance / 环境合规性 / Umwelt-Compliance}
+\begin{itemize}
+    \item Waste management requirements
+    \item 废物管理要求
+    \item Abfallentsorgungsanforderungen
+    \item Energy efficiency regulations
+    \item 能源效率法规
+    \item Energieeffizienzvorschriften
+    \item Emissions regulations
+    \item 排放法规
+    \item Emissionsvorschriften
+    \item Environmental permits
+    \item 环境许可
+    \item Umweltgenehmigungen
+\end{itemize}
+
+\section{Insurance Requirements / 保险要求 / Versicherungsanforderungen}
+
+\subsection{Mandatory Insurance / 强制性保险 / Pflichtversicherungen}
+\begin{itemize}
+    \item Liability insurance (Haftpflichtversicherung)
+    \item 责任保险（Haftpflichtversicherung）
+    \item Haftpflichtversicherung
+    \item Professional indemnity insurance
+    \item 职业责任保险
+    \item Berufshaftpflichtversicherung
+    \item Workers' compensation insurance
+    \item 工伤保险
+    \item Unfallversicherung
+\end{itemize}
+
+\subsection{Recommended Insurance / 推荐保险 / Empfohlene Versicherungen}
+\begin{itemize}
+    \item Business interruption insurance
+    \item 营业中断保险
+    \item Betriebsunterbrechungsversicherung
+    \item Property insurance
+    \item 财产保险
+    \item Sachversicherung
+    \item Cyber insurance
+    \item 网络保险
+    \item Cyber-Versicherung
+\end{itemize}
+
+\section{Compliance and Ongoing Obligations / 合规性和持续义务 / Compliance und laufende Verpflichtungen}
+
+\subsection{Regular Reporting / 定期报告 / Regelmäßige Berichterstattung}
+\begin{itemize}
+    \item Annual reports
+    \item 年度报告
+    \item Jahresberichte
+    \item Statistical reporting
+    \item 统计报告
+    \item Statistische Berichterstattung
+    \item Industry-specific reporting
+    \item 行业特定报告
+    \item Branchenspezifische Berichterstattung
+\end{itemize}
+
+\subsection{Record Keeping / 记录保存 / Aufzeichnungspflichten}
+\begin{itemize}
+    \item Accounting records
+    \item 会计记录
+    \item Buchhaltungsunterlagen
+    \item Employment records
+    \item 雇佣记录
+    \item Beschäftigungsunterlagen
+    \item Retention periods
+    \item 保存期限
+    \item Aufbewahrungsfristen
+\end{itemize}
+
+\section{Legal Support and Resources / 法律支持和资源 / Rechtliche Unterstützung und Ressourcen}
+
+\subsection{Professional Advisors / 专业顾问 / Professionelle Berater}
+\begin{itemize}
+    \item Business lawyers (Fachanwalt für Handelsrecht)
+    \item 商业律师（商法专业律师）
+    \item Fachanwalt für Handelsrecht
+    \item Tax advisors (Steuerberater)
+    \item 税务顾问（Steuerberater）
+    \item Steuerberater
+    \item Notaries (Notar)
+    \item 公证人（Notar）
+    \item Notar
+\end{itemize}
+
+\subsection{Government Resources / 政府资源 / Regierungsressourcen}
+\begin{itemize}
+    \item Chamber of Commerce (IHK)
+    \item 商会（IHK）
+    \item Industrie- und Handelskammer (IHK)
+    \item Government portals and information
+    \item 政府门户和信息
+    \item Regierungsportale und -informationen
+    \item Business development agencies
+    \item 商业发展机构
+    \item Wirtschaftsförderungsagenturen
+\end{itemize}
