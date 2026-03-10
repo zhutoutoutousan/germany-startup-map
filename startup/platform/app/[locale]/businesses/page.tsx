@@ -8,6 +8,9 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
 
+// Mark as dynamic since we're using searchParams
+export const dynamic = 'force-dynamic'
+
 export default async function BusinessesPage({
   params: { locale },
   searchParams,
@@ -17,26 +20,36 @@ export default async function BusinessesPage({
 }) {
   setRequestLocale(locale)
   const t = await getTranslations()
-  const supabase = await createClient()
+  
+  let businesses = null
+  
+  if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    try {
+      const supabase = await createClient()
 
-  let query = supabase
-    .from('businesses')
-    .select('*')
-    .eq('status', 'active')
+      let query = supabase
+        .from('businesses')
+        .select('*')
+        .eq('status', 'active')
 
-  if (searchParams.q) {
-    query = query.or(`name.ilike.%${searchParams.q}%,description.ilike.%${searchParams.q}%`)
+      if (searchParams.q) {
+        query = query.or(`name.ilike.%${searchParams.q}%,description.ilike.%${searchParams.q}%`)
+      }
+
+      if (searchParams.type) {
+        query = query.eq('business_type', searchParams.type)
+      }
+
+      if (searchParams.city) {
+        query = query.eq('city', searchParams.city)
+      }
+
+      const result = await query.order('created_at', { ascending: false })
+      businesses = result.data
+    } catch (error) {
+      console.error('Error fetching businesses:', error)
+    }
   }
-
-  if (searchParams.type) {
-    query = query.eq('business_type', searchParams.type)
-  }
-
-  if (searchParams.city) {
-    query = query.eq('city', searchParams.city)
-  }
-
-  const { data: businesses } = await query.order('created_at', { ascending: false })
 
   return (
     <div className="container mx-auto px-4 py-8">
