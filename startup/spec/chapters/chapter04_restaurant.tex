@@ -1,0 +1,292 @@
+\chapter{Restaurant Business / 餐饮业务 / Restaurantgeschäft}
+
+\section{Introduction / 介绍 / Einführung}
+
+This chapter provides comprehensive information for opening and operating a restaurant business in Germany, including legal requirements, location selection, supply chain management, and operational considerations.
+
+本章为在德国开设和经营餐饮业务提供全面信息，包括法律要求、位置选择、供应链管理和运营考虑。
+
+Dieses Kapitel bietet umfassende Informationen zur Eröffnung und zum Betrieb eines Restaurants in Deutschland, einschließlich rechtlicher Anforderungen, Standortauswahl, Lieferkettenmanagement und betrieblicher Überlegungen.
+
+\subsection{Restaurant Setup Process / 餐厅设立流程 / Restaurant-Einrichtungsprozess}
+
+Figure~\ref{fig:restaurant_setup} illustrates the complete process for opening a restaurant in Germany, from initial planning to operational launch.
+
+图~\ref{fig:restaurant_setup}说明了在德国开设餐厅的完整流程，从初始规划到运营启动。
+
+Abbildung~\ref{fig:restaurant_setup} veranschaulicht den vollständigen Prozess zur Eröffnung eines Restaurants in Deutschland, von der ersten Planung bis zum operativen Start.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+    node distance=1cm,
+    process/.style={rectangle, draw, fill=blue!20, text width=3cm, text centered, rounded corners, minimum height=0.8cm, font=\small},
+    arrow/.style={->, >=stealth, thick}
+]
+    % Process steps
+    \node [process] (plan) {Business Plan / 商业计划 / Businessplan};
+    \node [process, right of=plan] (location) {Location / 位置 / Standort};
+    \node [process, right of=location] (license) {Licenses / 许可证 / Lizenzen};
+    \node [process, right of=license] (equip) {Equipment / 设备 / Ausstattung};
+    \node [process, right of=equip] (staff) {Staff / 员工 / Personal};
+    \node [process, right of=staff] (open) {Open / 开业 / Eröffnung};
+    
+    % Arrows
+    \draw [arrow] (plan) -- (location);
+    \draw [arrow] (location) -- (license);
+    \draw [arrow] (license) -- (equip);
+    \draw [arrow] (equip) -- (staff);
+    \draw [arrow] (staff) -- (open);
+    
+    % Parallel processes below
+    \node [process, below of=plan, yshift=-0.5cm] (supply) {Supply Chain / 供应链 / Lieferkette};
+    \node [process, below of=location, yshift=-0.5cm] (design) {Design / 设计 / Design};
+    \node [process, below of=license, yshift=-0.5cm] (health) {Health Check / 健康检查 / Gesundheitsprüfung};
+    \node [process, below of=equip, yshift=-0.5cm] (finance) {Financing / 融资 / Finanzierung};
+    \node [process, below of=staff, yshift=-0.5cm] (training) {Training / 培训 / Schulung};
+    
+    % Vertical connections
+    \draw [arrow, dashed] (plan) -- (supply);
+    \draw [arrow, dashed] (location) -- (design);
+    \draw [arrow, dashed] (license) -- (health);
+    \draw [arrow, dashed] (equip) -- (finance);
+    \draw [arrow, dashed] (staff) -- (training);
+\end{tikzpicture}
+\caption{Restaurant Setup Process / 餐厅设立流程 / Restaurant-Einrichtungsprozess}
+\label{fig:restaurant_setup}
+\end{figure}
+
+\section{Legal Requirements / 法律要求 / Rechtliche Anforderungen}
+
+\subsection{Business Registration / 商业登记 / Gewerbeanmeldung}
+\begin{itemize}
+    \item Trade office registration (Gewerbeanmeldung)
+    \item 贸易办公室登记（Gewerbeanmeldung）
+    \item Gewerbeanmeldung
+    \item Required documents
+    \item 所需文件
+    \item Erforderliche Dokumente
+    \item Registration fees
+    \item 登记费
+    \item Anmeldegebühren
+\end{itemize}
+
+\subsection{Food Safety and Health Regulations / 食品安全和健康法规 / Lebensmittelsicherheit und Gesundheitsvorschriften}
+\begin{itemize}
+    \item Health department approval (Gesundheitsamt)
+    \item 卫生部门批准（Gesundheitsamt）
+    \item Genehmigung des Gesundheitsamts
+    \item Food handling certificates
+    \item 食品处理证书
+    \item Lebensmittelhandhabungszertifikate
+    \item Hygiene regulations (HACCP)
+    \item 卫生法规（HACCP）
+    \item Hygienevorschriften (HACCP)
+    \item Regular inspections
+    \item 定期检查
+    \item Regelmäßige Inspektionen
+\end{itemize}
+
+\subsection{Alcohol License / 酒类许可证 / Alkohollizenz}
+\begin{itemize}
+    \item Requirements for serving alcohol
+    \item 提供酒类的要求
+    \item Anforderungen für den Alkoholausschank
+    \item Application process
+    \item 申请流程
+    \item Antragsverfahren
+    \item Age restrictions and compliance
+    \item 年龄限制和合规性
+    \item Altersbeschränkungen und Compliance
+\end{itemize}
+
+\section{Location Selection / 位置选择 / Standortauswahl}
+
+\subsection{Market Analysis / 市场分析 / Marktanalyse}
+\begin{itemize}
+    \item Demographics and target customers
+    \item 人口统计和目标客户
+    \item Demografie und Zielkunden
+    \item Competition analysis
+    \item 竞争分析
+    \item Wettbewerbsanalyse
+    \item Foot traffic assessment
+    \item 人流量评估
+    \item Fußgängeraufkommen-Bewertung
+\end{itemize}
+
+\subsection{Real Estate Considerations / 房地产考虑因素 / Immobilienüberlegungen}
+\begin{itemize}
+    \item Rental vs. purchase options
+    \item 租赁与购买选择
+    \item Miete vs. Kaufoptionen
+    \item Commercial lease agreements
+    \item 商业租赁协议
+    \item Gewerbemietverträge
+    \item Zoning regulations (Bauordnung)
+    \item 分区法规（Bauordnung）
+    \item Bauordnungsvorschriften
+    \item Accessibility requirements
+    \item 无障碍要求
+    \item Barrierefreiheitsanforderungen
+\end{itemize}
+
+\subsection{Location Types / 位置类型 / Standorttypen}
+\begin{itemize}
+    \item City center locations
+    \item 市中心位置
+    \item Innenstadtlagen
+    \item Shopping districts
+    \item 购物区
+    \item Einkaufsviertel
+    \item Residential areas
+    \item 住宅区
+    \item Wohngebiete
+    \item Tourist areas
+    \item 旅游区
+    \item Touristenviertel
+\end{itemize}
+
+\section{Real Estate Analytics / 房地产分析 / Immobilienanalyse}
+
+\subsection{Rental Market Analysis / 租赁市场分析 / Mietmarktanalyse}
+\begin{itemize}
+    \item Average rental prices by location
+    \item 各位置的平均租金
+    \item Durchschnittliche Mietpreise nach Standort
+    \item Price per square meter (€/m²)
+    \item 每平方米价格（€/m²）
+    \item Preis pro Quadratmeter (€/m²)
+    \item Market trends and forecasts
+    \item 市场趋势和预测
+    \item Markttrends und Prognosen
+\end{itemize}
+
+\subsection{Commercial Real Estate Resources / 商业房地产资源 / Gewerbeimmobilien-Ressourcen}
+\begin{itemize}
+    \item Online platforms (ImmobilienScout24, Immowelt)
+    \item 在线平台（ImmobilienScout24, Immowelt）
+    \item Online-Plattformen (ImmobilienScout24, Immowelt)
+    \item Real estate agents specializing in commercial properties
+    \item 专门从事商业地产的房地产经纪人
+    \item Immobilienmakler für Gewerbeimmobilien
+    \item Local chamber of commerce (IHK)
+    \item 当地商会（IHK）
+    \item Industrie- und Handelskammer (IHK)
+\end{itemize}
+
+\section{Supply Chain and Wholesale (Großhandel) / 供应链和批发 / Lieferkette und Großhandel}
+
+\subsection{Food Suppliers / 食品供应商 / Lebensmittellieferanten}
+\begin{itemize}
+    \item Asian food wholesalers
+    \item 亚洲食品批发商
+    \item Asiatische Lebensmittelgroßhändler
+    \item Local German suppliers
+    \item 当地德国供应商
+    \item Lokale deutsche Lieferanten
+    \item Import procedures for specialty items
+    \item 特色商品的进口程序
+    \item Importverfahren für Spezialartikel
+\end{itemize}
+
+\subsection{Wholesale Markets (Großhandel) / 批发市场 / Großhandelsmärkte}
+\begin{itemize}
+    \item Metro Cash \& Carry
+    \item Metro Cash \& Carry
+    \item Metro Cash \& Carry
+    \item Selgros
+    \item Selgros
+    \item Selgros
+    \item Local wholesale markets
+    \item 当地批发市场
+    \item Lokale Großhandelsmärkte
+    \item Direct supplier relationships
+    \item 直接供应商关系
+    \item Direkte Lieferantenbeziehungen
+\end{itemize}
+
+\subsection{Supply Chain Management / 供应链管理 / Lieferkettenmanagement}
+\begin{itemize}
+    \item Inventory management systems
+    \item 库存管理系统
+    \item Bestandsverwaltungssysteme
+    \item Ordering and delivery schedules
+    \item 订购和交付时间表
+    \item Bestell- und Lieferpläne
+    \item Quality control procedures
+    \item 质量控制程序
+    \item Qualitätskontrollverfahren
+    \item Cost optimization strategies
+    \item 成本优化策略
+    \item Kostenoptimierungsstrategien
+\end{itemize}
+
+\section{Equipment and Setup / 设备和设置 / Ausstattung und Einrichtung}
+
+\subsection{Kitchen Equipment / 厨房设备 / Küchenausstattung}
+\begin{itemize}
+    \item Essential equipment list
+    \item 基本设备清单
+    \item Liste der wesentlichen Ausstattung
+    \item Suppliers and vendors
+    \item 供应商和销售商
+    \item Lieferanten und Händler
+    \item Leasing vs. purchasing options
+    \item 租赁与购买选择
+    \item Leasing vs. Kaufoptionen
+\end{itemize}
+
+\subsection{Interior Design and Ambiance / 室内设计和氛围 / Innenarchitektur und Ambiente}
+\begin{itemize}
+    \item Design considerations
+    \item 设计考虑因素
+    \item Designüberlegungen
+    \item Compliance with building codes
+    \item 符合建筑规范
+    \item Einhaltung der Bauvorschriften
+    \item Fire safety requirements
+    \item 消防安全要求
+    \item Brandschutzanforderungen
+\end{itemize}
+
+\section{Operations and Management / 运营和管理 / Betrieb und Management}
+
+\subsection{Staffing / 人员配置 / Personalbesetzung}
+\begin{itemize}
+    \item Hiring requirements
+    \item 招聘要求
+    \item Einstellungsanforderungen
+    \item Work permits for employees
+    \item 员工工作许可
+    \item Arbeitserlaubnisse für Mitarbeiter
+    \item Training and certification
+    \item 培训和认证
+    \item Schulung und Zertifizierung
+\end{itemize}
+
+\subsection{Financial Management / 财务管理 / Finanzverwaltung}
+\begin{itemize}
+    \item Accounting requirements
+    \item 会计要求
+    \item Buchhaltungsanforderungen
+    \item Tax obligations
+    \item 税务义务
+    \item Steuerpflichten
+    \item Point of sale (POS) systems
+    \item 销售点（POS）系统
+    \item Kassensysteme (POS)
+\end{itemize}
+
+\subsection{Marketing and Promotion / 营销和推广 / Marketing und Werbung}
+\begin{itemize}
+    \item Local marketing strategies
+    \item 本地营销策略
+    \item Lokale Marketingstrategien
+    \item Online presence (website, social media)
+    \item 在线存在（网站、社交媒体）
+    \item Online-Präsenz (Website, soziale Medien)
+    \item Customer loyalty programs
+    \item 客户忠诚度计划
+    \item Kundenbindungsprogramme
+\end{itemize}

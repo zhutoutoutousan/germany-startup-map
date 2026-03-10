@@ -1,0 +1,7 @@
+﻿Payment_Method,EU_Usage_Percentage,China_Usage_Percentage
+Bank Card (Credit/Debit),45,15
+"Mobile Payment (Apple Pay, Google Pay)",12,65
+PayPal,15,5
+Bank Transfer (SEPA),20,10
+Cash,5,3
+Other Digital Wallets,3,2

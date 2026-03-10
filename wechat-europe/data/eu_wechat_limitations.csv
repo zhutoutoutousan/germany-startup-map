@@ -1,0 +1,8 @@
+﻿Feature,EU_Account_Status,China_Account_Status,Reason
+WeChat Out (International Calls),Not Available,Available,Privacy Policy Restrictions
+Sticker Store,Frequently Fails to Load,Available,Technical Issues
+Teen Mode,Not Available,Available,Feature Not Implemented
+Data Export Function,System Error (Since April 2021),Not Available,GDPR Compliance Issue
+Medical Services (China),Not Available,Available,Regional Restrictions
+GDPR Data Authorization,Required for Each Use,Not Required,GDPR Requirement
+CallKit (System-level Call Display),Available,Not Available,Regional Feature

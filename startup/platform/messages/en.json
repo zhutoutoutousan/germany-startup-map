@@ -1,0 +1,89 @@
+{
+  "common": {
+    "welcome": "Welcome to Germany Startup Map",
+    "search": "Search",
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "profile": "Profile",
+    "dashboard": "Dashboard",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "nav": {
+    "home": "Home",
+    "businesses": "Businesses",
+    "services": "Services",
+    "realEstate": "Real Estate",
+    "resources": "Resources",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "forgotPassword": "Forgot Password?",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
+    "signInWithEmail": "Sign in with Email",
+    "signUpWithEmail": "Sign up with Email"
+  },
+  "business": {
+    "title": "Businesses",
+    "addBusiness": "Add Business",
+    "businessName": "Business Name",
+    "description": "Description",
+    "type": "Business Type",
+    "address": "Address",
+    "city": "City",
+    "phone": "Phone",
+    "email": "Email",
+    "website": "Website"
+  },
+  "services": {
+    "title": "Service Providers",
+    "findService": "Find a Service Provider",
+    "serviceType": "Service Type",
+    "legal": "Legal Services",
+    "accounting": "Accounting",
+    "realEstate": "Real Estate",
+    "consulting": "Consulting",
+    "supplyChain": "Supply Chain"
+  },
+  "realEstate": {
+    "title": "Real Estate",
+    "findProperty": "Find Property",
+    "propertyType": "Property Type",
+    "listingType": "Listing Type",
+    "rental": "Rental",
+    "sale": "Sale",
+    "lease": "Lease",
+    "price": "Price",
+    "size": "Size (sqm)",
+    "availableFrom": "Available From"
+  },
+  "resources": {
+    "title": "Resources",
+    "guides": "Guides",
+    "documents": "Documents",
+    "tools": "Tools",
+    "contacts": "Contacts"
+  },
+  "inquiry": {
+    "title": "Contact Us",
+    "sendInquiry": "Send Inquiry",
+    "subject": "Subject",
+    "message": "Message",
+    "yourEmail": "Your Email",
+    "yourPhone": "Your Phone"
+  }
+}

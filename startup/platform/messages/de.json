@@ -1,0 +1,89 @@
+{
+  "common": {
+    "welcome": "Willkommen bei Germany Startup Map",
+    "search": "Suchen",
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "register": "Registrieren",
+    "profile": "Profil",
+    "dashboard": "Dashboard",
+    "submit": "Absenden",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "loading": "Laden...",
+    "error": "Fehler",
+    "success": "Erfolg"
+  },
+  "nav": {
+    "home": "Startseite",
+    "businesses": "Unternehmen",
+    "services": "Dienstleistungen",
+    "realEstate": "Immobilien",
+    "resources": "Ressourcen",
+    "about": "Über uns",
+    "contact": "Kontakt"
+  },
+  "auth": {
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "confirmPassword": "Passwort bestätigen",
+    "forgotPassword": "Passwort vergessen?",
+    "alreadyHaveAccount": "Bereits ein Konto?",
+    "dontHaveAccount": "Noch kein Konto?",
+    "signInWithEmail": "Mit E-Mail anmelden",
+    "signUpWithEmail": "Mit E-Mail registrieren"
+  },
+  "business": {
+    "title": "Unternehmen",
+    "addBusiness": "Unternehmen hinzufügen",
+    "businessName": "Unternehmensname",
+    "description": "Beschreibung",
+    "type": "Unternehmenstyp",
+    "address": "Adresse",
+    "city": "Stadt",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "website": "Website"
+  },
+  "services": {
+    "title": "Dienstleister",
+    "findService": "Dienstleister finden",
+    "serviceType": "Dienstleistungstyp",
+    "legal": "Rechtsdienstleistungen",
+    "accounting": "Buchhaltung",
+    "realEstate": "Immobilien",
+    "consulting": "Beratung",
+    "supplyChain": "Lieferkette"
+  },
+  "realEstate": {
+    "title": "Immobilien",
+    "findProperty": "Immobilie finden",
+    "propertyType": "Immobilientyp",
+    "listingType": "Anzeigentyp",
+    "rental": "Miete",
+    "sale": "Verkauf",
+    "lease": "Pacht",
+    "price": "Preis",
+    "size": "Größe (qm)",
+    "availableFrom": "Verfügbar ab"
+  },
+  "resources": {
+    "title": "Ressourcen",
+    "guides": "Leitfäden",
+    "documents": "Dokumente",
+    "tools": "Tools",
+    "contacts": "Kontakte"
+  },
+  "inquiry": {
+    "title": "Kontaktieren Sie uns",
+    "sendInquiry": "Anfrage senden",
+    "subject": "Betreff",
+    "message": "Nachricht",
+    "yourEmail": "Ihre E-Mail",
+    "yourPhone": "Ihre Telefonnummer"
+  }
+}
