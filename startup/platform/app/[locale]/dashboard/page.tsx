@@ -1,16 +1,26 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import { locales } from '@/i18n/config'
 
-export default async function DashboardPage() {
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }))
+}
+
+export default async function DashboardPage({
+  params: { locale }
+}: {
+  params: { locale: string }
+}) {
+  setRequestLocale(locale)
   const t = await getTranslations()
   const supabase = await createClient()
 
   const { data: { user } } = await supabase.auth.getUser()
 
   if (!user) {
-    redirect('/en/auth/login')
+    redirect(`/${locale}/auth/login`)
   }
 
   const { data: profile } = await supabase
@@ -51,7 +61,7 @@ export default async function DashboardPage() {
           )}
         </div>
         <Link
-          href="/en/profile/edit"
+          href={`/${locale}/profile/edit`}
           className="mt-4 inline-block px-4 py-2 bg-primary-600 text-white rounded hover:bg-primary-700"
         >
           Edit Profile
@@ -64,7 +74,7 @@ export default async function DashboardPage() {
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-semibold">My Businesses</h2>
             <Link
-              href="/en/businesses/new"
+              href={`/${locale}/businesses/new`}
               className="px-4 py-2 bg-primary-600 text-white rounded hover:bg-primary-700"
             >
               Add Business
@@ -76,7 +86,7 @@ export default async function DashboardPage() {
                 <h3 className="text-xl font-semibold">{business.name}</h3>
                 <p className="text-gray-600">{business.city}</p>
                 <Link
-                  href={`/en/businesses/${business.id}`}
+                  href={`/${locale}/businesses/${business.id}`}
                   className="text-primary-600 hover:text-primary-700"
                 >
                   View Details →
@@ -93,7 +103,7 @@ export default async function DashboardPage() {
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-semibold">My Service Providers</h2>
             <Link
-              href="/en/services/new"
+              href={`/${locale}/services/new`}
               className="px-4 py-2 bg-primary-600 text-white rounded hover:bg-primary-700"
             >
               Add Service
@@ -105,7 +115,7 @@ export default async function DashboardPage() {
                 <h3 className="text-xl font-semibold">{service.company_name}</h3>
                 <p className="text-gray-600">{service.service_type} - {service.city}</p>
                 <Link
-                  href={`/en/services/${service.id}`}
+                  href={`/${locale}/services/${service.id}`}
                   className="text-primary-600 hover:text-primary-700"
                 >
                   View Details →
