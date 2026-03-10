@@ -7,6 +7,9 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
 
+// Mark as dynamic since we're using searchParams
+export const dynamic = 'force-dynamic'
+
 export default async function ResourcesPage({
   params: { locale },
   searchParams,
@@ -16,21 +19,31 @@ export default async function ResourcesPage({
 }) {
   setRequestLocale(locale)
   const t = await getTranslations()
-  const supabase = await createClient()
+  
+  let resources = null
+  
+  if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    try {
+      const supabase = await createClient()
 
-  let query = supabase
-    .from('resources')
-    .select('*')
+      let query = supabase
+        .from('resources')
+        .select('*')
 
-  if (searchParams.q) {
-    query = query.or(`title.ilike.%${searchParams.q}%,description.ilike.%${searchParams.q}%`)
+      if (searchParams.q) {
+        query = query.or(`title.ilike.%${searchParams.q}%,description.ilike.%${searchParams.q}%`)
+      }
+
+      if (searchParams.type) {
+        query = query.eq('resource_type', searchParams.type)
+      }
+
+      const result = await query.order('created_at', { ascending: false })
+      resources = result.data
+    } catch (error) {
+      console.error('Error fetching resources:', error)
+    }
   }
-
-  if (searchParams.type) {
-    query = query.eq('resource_type', searchParams.type)
-  }
-
-  const { data: resources } = await query.order('created_at', { ascending: false })
 
   return (
     <div className="container mx-auto px-4 py-8">

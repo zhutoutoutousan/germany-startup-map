@@ -8,6 +8,9 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
 
+// Mark as dynamic since we're checking authentication
+export const dynamic = 'force-dynamic'
+
 export default async function DashboardPage({
   params: { locale }
 }: {

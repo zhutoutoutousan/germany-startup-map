@@ -10,6 +10,9 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
 
+// Mark as dynamic since we're fetching data from Supabase
+export const dynamic = 'force-dynamic'
+
 export default async function HomePage({
   params: { locale }
 }: {
@@ -19,24 +22,40 @@ export default async function HomePage({
   setRequestLocale(locale)
   
   const t = await getTranslations()
-  const supabase = await createClient()
+  
+  let businesses = null
+  let services = null
 
-  // Fetch featured businesses
-  const { data: businesses } = await supabase
-    .from('businesses')
-    .select('*')
-    .eq('featured', true)
-    .eq('status', 'active')
-    .limit(6)
+  // Only fetch data if Supabase is configured
+  if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    try {
+      const supabase = await createClient()
 
-  // Fetch featured service providers
-  const { data: services } = await supabase
-    .from('service_providers')
-    .select('*')
-    .eq('verified', true)
-    .eq('status', 'active')
-    .order('rating', { ascending: false })
-    .limit(6)
+      // Fetch featured businesses
+      const businessesResult = await supabase
+        .from('businesses')
+        .select('*')
+        .eq('featured', true)
+        .eq('status', 'active')
+        .limit(6)
+
+      businesses = businessesResult.data
+
+      // Fetch featured service providers
+      const servicesResult = await supabase
+        .from('service_providers')
+        .select('*')
+        .eq('verified', true)
+        .eq('status', 'active')
+        .order('rating', { ascending: false })
+        .limit(6)
+
+      services = servicesResult.data
+    } catch (error) {
+      // Silently fail during build if Supabase is not configured
+      console.error('Error fetching data:', error)
+    }
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">

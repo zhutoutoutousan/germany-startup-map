@@ -7,6 +7,9 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
 
+// Mark as dynamic since we're using searchParams
+export const dynamic = 'force-dynamic'
+
 export default async function RealEstatePage({
   params: { locale },
   searchParams,
@@ -16,26 +19,36 @@ export default async function RealEstatePage({
 }) {
   setRequestLocale(locale)
   const t = await getTranslations()
-  const supabase = await createClient()
+  
+  let properties = null
+  
+  if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    try {
+      const supabase = await createClient()
 
-  let query = supabase
-    .from('real_estate')
-    .select('*')
-    .eq('status', 'available')
+      let query = supabase
+        .from('real_estate')
+        .select('*')
+        .eq('status', 'available')
 
-  if (searchParams.q) {
-    query = query.or(`title.ilike.%${searchParams.q}%,description.ilike.%${searchParams.q}%`)
+      if (searchParams.q) {
+        query = query.or(`title.ilike.%${searchParams.q}%,description.ilike.%${searchParams.q}%`)
+      }
+
+      if (searchParams.type) {
+        query = query.eq('property_type', searchParams.type)
+      }
+
+      if (searchParams.city) {
+        query = query.eq('city', searchParams.city)
+      }
+
+      const result = await query.order('created_at', { ascending: false })
+      properties = result.data
+    } catch (error) {
+      console.error('Error fetching properties:', error)
+    }
   }
-
-  if (searchParams.type) {
-    query = query.eq('property_type', searchParams.type)
-  }
-
-  if (searchParams.city) {
-    query = query.eq('city', searchParams.city)
-  }
-
-  const { data: properties } = await query.order('created_at', { ascending: false })
 
   return (
     <div className="container mx-auto px-4 py-8">
