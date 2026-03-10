@@ -1,12 +1,23 @@
-import { useTranslations } from 'next-intl'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Link } from '@/components/ui/Link'
 import { SearchBar } from '@/components/search/SearchBar'
 import { BusinessCard } from '@/components/business/BusinessCard'
 import { ServiceCard } from '@/components/services/ServiceCard'
 import { createClient } from '@/lib/supabase/server'
+import { locales } from '@/i18n/config'
 
-export default async function HomePage() {
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }))
+}
+
+export default async function HomePage({
+  params: { locale }
+}: {
+  params: { locale: string }
+}) {
+  // Enable static rendering
+  setRequestLocale(locale)
+  
   const t = await getTranslations()
   const supabase = await createClient()
 

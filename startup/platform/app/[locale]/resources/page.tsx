@@ -1,12 +1,20 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { createClient } from '@/lib/supabase/server'
 import { SearchBar } from '@/components/search/SearchBar'
+import { locales } from '@/i18n/config'
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }))
+}
 
 export default async function ResourcesPage({
+  params: { locale },
   searchParams,
 }: {
+  params: { locale: string }
   searchParams: { q?: string; type?: string }
 }) {
+  setRequestLocale(locale)
   const t = await getTranslations()
   const supabase = await createClient()
 
