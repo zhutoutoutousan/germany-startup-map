@@ -4,33 +4,46 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/prisma-generate.js --strict && next build",
     "start": "next start",
     "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "postinstall": "node scripts/prisma-generate.js",
+    "db:generate": "node scripts/prisma-generate.js",
+    "db:push": "node scripts/prisma-run.js db push",
+    "db:migrate": "node scripts/prisma-run.js migrate dev",
+    "db:studio": "node scripts/prisma-run.js studio",
+    "ingest:external": "tsx scripts/ingest-external-businesses.ts"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.39.0",
+    "@hookform/resolvers": "^3.3.4",
     "@supabase/ssr": "^0.1.0",
+    "@supabase/supabase-js": "^2.39.0",
+    "@vercel/analytics": "^2.0.1",
+    "autoprefixer": "^10.4.16",
+    "clsx": "^2.1.0",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^0.309.0",
+    "@prisma/client": "^5.22.0",
     "next": "14.0.4",
+    "next-intl": "^3.5.0",
+    "postcss": "^8.4.33",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "next-intl": "^3.5.0",
-    "tailwindcss": "^3.4.1",
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.33",
-    "lucide-react": "^0.309.0",
-    "clsx": "^2.1.0",
-    "zod": "^3.22.4",
     "react-hook-form": "^7.49.3",
-    "@hookform/resolvers": "^3.3.4"
+    "tailwindcss": "^3.4.1",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/leaflet": "^1.9.8",
     "@types/node": "^20.11.5",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
-    "typescript": "^5.3.3",
     "eslint": "^8.56.0",
-    "eslint-config-next": "14.0.4"
+    "dotenv": "^16.4.5",
+    "eslint-config-next": "14.0.4",
+    "prisma": "^5.22.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.3.3"
   }
 }

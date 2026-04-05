@@ -23,7 +23,10 @@
     "realEstate": "Real Estate",
     "resources": "Resources",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "community": "Community",
+    "founders": "Founders",
+    "messages": "Messages"
   },
   "auth": {
     "signIn": "Sign In",
@@ -37,8 +40,29 @@
     "signInWithEmail": "Sign in with Email",
     "signUpWithEmail": "Sign up with Email"
   },
+  "home": {
+    "hubKicker": "Germany startup map",
+    "hubTitle": "A long scroll of places and ventures",
+    "hubSubtitle": "Pan across the country like a hand-scroll: one surface for businesses, services, property, and guides — calm, dense, and meant to be explored.",
+    "infoCenter": "Information center",
+    "tileBusinesses": "Businesses",
+    "tileServices": "Services",
+    "tileRealEstate": "Real estate",
+    "tileResources": "Resources",
+    "searchPlaceholder": "Search businesses, services, properties…",
+    "searchAction": "Search",
+    "emptyMapHint": "No pins yet. Listings with latitude and longitude appear on this living chart."
+  },
   "business": {
     "title": "Businesses",
+    "allTypes": "All types",
+    "typeRestaurant": "Restaurant",
+    "typeRetail": "Retail",
+    "typeEcommerce": "E-commerce",
+    "typeService": "Service",
+    "cityFilterPlaceholder": "City name…",
+    "applyFilters": "Apply",
+    "emptyHint": "Try clearing filters, or add active businesses with coordinates in the database.",
     "addBusiness": "Add Business",
     "businessName": "Business Name",
     "description": "Description",
@@ -85,5 +109,41 @@
     "message": "Message",
     "yourEmail": "Your Email",
     "yourPhone": "Your Phone"
+  },
+  "community": {
+    "title": "Community",
+    "newPost": "New post",
+    "needsDb": "Set DATABASE_URL to load community posts.",
+    "empty": "No posts yet. Be the first to share.",
+    "newTitle": "Write a post",
+    "fieldTitle": "Title",
+    "fieldBody": "Body",
+    "publish": "Publish"
+  },
+  "founders": {
+    "title": "Founder matching",
+    "subtitle": "Meet co-founders and collaborators across Germany.",
+    "signInHint": "Sign in to send connection requests and see your inbox.",
+    "needsDb": "DATABASE_URL is required for founder profiles.",
+    "empty": "No founder profiles yet. Check back soon.",
+    "introLabel": "Short intro (optional)",
+    "connect": "Send request",
+    "sent": "Request sent.",
+    "inbox": "Connection requests",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
+  "messages": {
+    "title": "Messages",
+    "subtitle": "Mail-style threads with other members.",
+    "signInHint": "Sign in to read and send messages.",
+    "needsDb": "DATABASE_URL is required for messaging.",
+    "empty": "No conversations yet. Accept a founder request to open a thread.",
+    "threadWith": "With {name}",
+    "back": "All messages",
+    "composeLabel": "Message",
+    "placeholder": "Write a message…",
+    "send": "Send",
+    "error": "Could not send."
   }
 }

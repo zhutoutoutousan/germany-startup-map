@@ -23,7 +23,10 @@
     "realEstate": "Immobilien",
     "resources": "Ressourcen",
     "about": "Über uns",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "community": "Community",
+    "founders": "Gründer",
+    "messages": "Nachrichten"
   },
   "auth": {
     "signIn": "Anmelden",
@@ -37,8 +40,29 @@
     "signInWithEmail": "Mit E-Mail anmelden",
     "signUpWithEmail": "Mit E-Mail registrieren"
   },
+  "home": {
+    "hubKicker": "Germany Startup Map",
+    "hubTitle": "Ein langer Überblick über Orte und Gründungen",
+    "hubSubtitle": "Wie eine Handrolle: ein einziger Raum für Unternehmen, Dienstleistungen, Immobilien und Leitfäden — ruhig, dicht und zum Entdecken gemacht.",
+    "infoCenter": "Informationszentrale",
+    "tileBusinesses": "Unternehmen",
+    "tileServices": "Dienstleistungen",
+    "tileRealEstate": "Immobilien",
+    "tileResources": "Ressourcen",
+    "searchPlaceholder": "Unternehmen, Dienstleistungen, Immobilien suchen…",
+    "searchAction": "Suchen",
+    "emptyMapHint": "Noch keine Einträge mit Koordinaten. Sobald Standorte gepflegt sind, erscheinen sie auf der Karte."
+  },
   "business": {
     "title": "Unternehmen",
+    "allTypes": "Alle Typen",
+    "typeRestaurant": "Gastronomie",
+    "typeRetail": "Einzelhandel",
+    "typeEcommerce": "E-Commerce",
+    "typeService": "Dienstleistung",
+    "cityFilterPlaceholder": "Stadt…",
+    "applyFilters": "Anwenden",
+    "emptyHint": "Filter zurücksetzen oder aktive Einträge mit Koordinaten anlegen.",
     "addBusiness": "Unternehmen hinzufügen",
     "businessName": "Unternehmensname",
     "description": "Beschreibung",
@@ -85,5 +109,41 @@
     "message": "Nachricht",
     "yourEmail": "Ihre E-Mail",
     "yourPhone": "Ihre Telefonnummer"
+  },
+  "community": {
+    "title": "Community",
+    "newPost": "Neuer Beitrag",
+    "needsDb": "DATABASE_URL setzen, um Beiträge zu laden.",
+    "empty": "Noch keine Beiträge. Schreiben Sie den ersten.",
+    "newTitle": "Beitrag schreiben",
+    "fieldTitle": "Titel",
+    "fieldBody": "Text",
+    "publish": "Veröffentlichen"
+  },
+  "founders": {
+    "title": "Gründer-Matching",
+    "subtitle": "Co-Gründer und Partner in Deutschland finden.",
+    "signInHint": "Anmelden, um Anfragen zu senden und die Inbox zu sehen.",
+    "needsDb": "DATABASE_URL wird für Gründerprofile benötigt.",
+    "empty": "Noch keine Gründerprofile.",
+    "introLabel": "Kurze Nachricht (optional)",
+    "connect": "Anfrage senden",
+    "sent": "Anfrage gesendet.",
+    "inbox": "Verbindungsanfragen",
+    "accept": "Annehmen",
+    "decline": "Ablehnen"
+  },
+  "messages": {
+    "title": "Nachrichten",
+    "subtitle": "E-Mail-ähnliche Unterhaltungen.",
+    "signInHint": "Anmelden, um Nachrichten zu lesen und zu senden.",
+    "needsDb": "DATABASE_URL wird für Nachrichten benötigt.",
+    "empty": "Noch keine Unterhaltungen. Akzeptieren Sie eine Gründeranfrage.",
+    "threadWith": "Mit {name}",
+    "back": "Alle Nachrichten",
+    "composeLabel": "Nachricht",
+    "placeholder": "Nachricht schreiben…",
+    "send": "Senden",
+    "error": "Senden fehlgeschlagen."
   }
 }

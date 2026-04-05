@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { createClient } from '@/lib/supabase/server'
 import { SearchBar } from '@/components/search/SearchBar'
+import { Map } from '@/components/map/Map'
 import { locales } from '@/i18n/config'
 
 export function generateStaticParams() {
@@ -79,6 +80,26 @@ export default async function RealEstatePage({
           className="px-4 py-2 border rounded"
         />
       </div>
+
+      {/* Map View */}
+      {properties && properties.length > 0 && (
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold mb-4">Map View</h2>
+          <Map
+            markers={properties
+              .filter(p => p.latitude && p.longitude)
+              .map(p => ({
+                id: p.id,
+                lat: Number(p.latitude),
+                lng: Number(p.longitude),
+                title: p.title,
+                description: `${p.city} - ${p.listing_type}`
+              }))}
+            height="500px"
+            className="border-2 border-gray-200"
+          />
+        </div>
+      )}
 
       {/* Properties List */}
       {properties && properties.length > 0 ? (

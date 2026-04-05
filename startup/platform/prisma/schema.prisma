@@ -1,0 +1,178 @@
+// Prisma maps your Supabase Postgres.
+// Add to .env.local (never commit): DATABASE_URL (pooler, often :6543 + ?pgbouncer=true) and DIRECT_URL (direct :5432) from Supabase → Settings → Database.
+// Migrations use DIRECT_URL; the app runtime uses DATABASE_URL. Server-side only — bypasses RLS; enforce auth in app code.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model UserProfile {
+  id                   String    @id @db.Uuid
+  email                String?
+  fullName             String?   @map("full_name")
+  phone                String?
+  languagePreference   String    @default("en") @map("language_preference")
+  userType             String    @default("entrepreneur") @map("user_type")
+  companyName          String?   @map("company_name")
+  bio                  String?
+  avatarUrl            String?   @map("avatar_url")
+  createdAt            DateTime  @default(now()) @map("created_at")
+  updatedAt            DateTime  @updatedAt @map("updated_at")
+  communityPosts       CommunityPost[]
+  founderProfile       FounderProfile?
+  matchRequestsSent    FounderMatchRequest[] @relation("MatchFrom")
+  matchRequestsRecv    FounderMatchRequest[] @relation("MatchTo")
+  chatThreadsA         ChatThread[] @relation("ThreadUserA")
+  chatThreadsB         ChatThread[] @relation("ThreadUserB")
+  messagesSent         ChatMessage[]
+
+  @@map("user_profiles")
+}
+
+model ServiceProvider {
+  id              String   @id @default(uuid()) @db.Uuid
+  userId          String?  @map("user_id") @db.Uuid
+  companyName     String   @map("company_name")
+  companyNameZh   String?  @map("company_name_zh")
+  companyNameDe   String?  @map("company_name_de")
+  serviceType     String   @map("service_type")
+  description     String?
+  descriptionZh   String?  @map("description_zh")
+  descriptionDe   String?  @map("description_de")
+  address         String?
+  city            String
+  state           String?
+  postalCode      String?  @map("postal_code")
+  country         String   @default("Germany")
+  phone           String?
+  email           String?
+  website         String?
+  languages       String[] @default(["en"])
+  rating          Decimal  @default(0) @db.Decimal(3, 2)
+  reviewCount     Int      @default(0) @map("review_count")
+  verified        Boolean  @default(false)
+  status          String   @default("active")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@index([status])
+  @@map("service_providers")
+}
+
+model Business {
+  id               String    @id @default(uuid()) @db.Uuid
+  userId           String?   @map("user_id") @db.Uuid
+  name             String
+  nameZh           String?   @map("name_zh")
+  nameDe           String?   @map("name_de")
+  description      String?
+  descriptionZh    String?   @map("description_zh")
+  descriptionDe    String?   @map("description_de")
+  businessType     String    @map("business_type")
+  category         String?
+  address          String?
+  city             String
+  state            String?
+  postalCode       String?   @map("postal_code")
+  country          String    @default("Germany")
+  latitude         Decimal?  @db.Decimal(10, 8)
+  longitude        Decimal?  @db.Decimal(11, 8)
+  phone            String?
+  email            String?
+  website          String?
+  status           String    @default("active")
+  featured         Boolean   @default(false)
+  createdAt        DateTime  @default(now()) @map("created_at")
+  updatedAt        DateTime  @updatedAt @map("updated_at")
+  externalSource   String?   @map("external_source")
+  externalId       String?   @map("external_id")
+
+  @@index([city])
+  @@index([status])
+  @@map("businesses")
+}
+
+model CommunityPost {
+  id        String   @id @default(uuid()) @db.Uuid
+  authorId  String   @map("author_id") @db.Uuid
+  title     String
+  body      String
+  locale    String   @default("en")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  author    UserProfile @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@index([createdAt(sort: Desc)])
+  @@map("community_posts")
+}
+
+model FounderProfile {
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String   @unique @map("user_id") @db.Uuid
+  headline    String
+  bio         String?
+  skills      String[] @default([])
+  seeking     String[] @default([])
+  stage       String   @default("idea")
+  city        String
+  country     String   @default("Germany")
+  latitude    Decimal? @db.Decimal(10, 8)
+  longitude   Decimal? @db.Decimal(11, 8)
+  visible     Boolean  @default(true)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  user        UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([city])
+  @@index([visible])
+  @@map("founder_profiles")
+}
+
+model FounderMatchRequest {
+  id            String   @id @default(uuid()) @db.Uuid
+  fromUserId    String   @map("from_user_id") @db.Uuid
+  toUserId      String   @map("to_user_id") @db.Uuid
+  status        String   @default("pending")
+  introMessage  String?  @map("intro_message")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+  fromUser      UserProfile @relation("MatchFrom", fields: [fromUserId], references: [id], onDelete: Cascade)
+  toUser        UserProfile @relation("MatchTo", fields: [toUserId], references: [id], onDelete: Cascade)
+
+  @@unique([fromUserId, toUserId], map: "founder_match_unique_pair")
+  @@index([toUserId, status])
+  @@map("founder_match_requests")
+}
+
+model ChatThread {
+  id        String   @id @default(uuid()) @db.Uuid
+  userAId   String   @map("user_a_id") @db.Uuid
+  userBId   String   @map("user_b_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at")
+  userA     UserProfile @relation("ThreadUserA", fields: [userAId], references: [id], onDelete: Cascade)
+  userB     UserProfile @relation("ThreadUserB", fields: [userBId], references: [id], onDelete: Cascade)
+  messages  ChatMessage[]
+
+  @@unique([userAId, userBId], map: "chat_thread_unique_pair")
+  @@map("chat_threads")
+}
+
+model ChatMessage {
+  id        String   @id @default(uuid()) @db.Uuid
+  threadId  String   @map("thread_id") @db.Uuid
+  senderId  String   @map("sender_id") @db.Uuid
+  body      String
+  createdAt DateTime @default(now()) @map("created_at")
+  readAt    DateTime? @map("read_at")
+  thread    ChatThread @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  sender    UserProfile @relation(fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@index([threadId, createdAt])
+  @@map("chat_messages")
+}

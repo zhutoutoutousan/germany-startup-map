@@ -69,45 +69,47 @@ export function ServiceCard({ service }: ServiceCardProps) {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition p-6">
-      <div className="flex justify-between items-start mb-2">
-        <h3 className="text-xl font-semibold">{getName()}</h3>
+    <div className="rounded-lg border border-zinc-800 bg-club-900/60 p-6 shadow-club transition hover:border-cyan-500/35 hover:shadow-neon-cyan">
+      <div className="mb-2 flex items-start justify-between">
+        <h3 className="font-display text-xl font-semibold text-zinc-100">{getName()}</h3>
         {service.verified && (
-          <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Verified</span>
+          <span className="rounded border border-emerald-500/40 bg-emerald-950/60 px-2 py-1 font-club text-[10px] font-bold uppercase tracking-wider text-emerald-300">
+            Verified
+          </span>
         )}
       </div>
-      <p className="text-sm text-primary-600 mb-2">
+      <p className="mb-2 font-club text-xs uppercase tracking-wider text-cyan-400/90">
         {serviceTypeLabels[locale]?.[service.service_type] || service.service_type}
       </p>
       {getDescription() && (
-        <p className="text-gray-600 mb-4 line-clamp-2">{getDescription()}</p>
+        <p className="mb-4 line-clamp-2 text-sm text-zinc-400">{getDescription()}</p>
       )}
-      <div className="flex items-center mb-4">
-        <Star size={16} className="text-yellow-400 fill-yellow-400 mr-1" />
-        <span className="font-semibold">{service.rating.toFixed(1)}</span>
-        <span className="text-gray-500 ml-2">({service.review_count} reviews)</span>
+      <div className="mb-4 flex items-center">
+        <Star size={16} className="mr-1 fill-neon-gold text-neon-gold" />
+        <span className="font-semibold text-zinc-200">{service.rating.toFixed(1)}</span>
+        <span className="ml-2 text-zinc-500">({service.review_count} reviews)</span>
       </div>
-      <div className="space-y-2 text-sm text-gray-500 mb-4">
+      <div className="mb-4 space-y-2 text-sm text-zinc-500">
         <div className="flex items-center">
-          <MapPin size={16} className="mr-2" />
-          <span>{service.city}</span>
+          <MapPin size={16} className="mr-2 text-fuchsia-400/80" />
+          <span className="text-zinc-300">{service.city}</span>
         </div>
         {service.phone && (
           <div className="flex items-center">
-            <Phone size={16} className="mr-2" />
+            <Phone size={16} className="mr-2 text-cyan-400/80" />
             <span>{service.phone}</span>
           </div>
         )}
         {service.email && (
           <div className="flex items-center">
-            <Mail size={16} className="mr-2" />
+            <Mail size={16} className="mr-2 text-cyan-400/80" />
             <span className="truncate">{service.email}</span>
           </div>
         )}
       </div>
       <Link
         href={`/${locale}/services/${service.id}`}
-        className="inline-block text-primary-600 hover:text-primary-700 font-semibold"
+        className="inline-block font-club text-xs font-bold uppercase tracking-wider text-fuchsia-400 transition hover:text-cyan-300"
       >
         View Details →
       </Link>

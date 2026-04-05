@@ -1,15 +1,23 @@
+import { Suspense } from 'react'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { createClient } from '@/lib/supabase/server'
 import { BusinessCard } from '@/components/business/BusinessCard'
 import { SearchBar } from '@/components/search/SearchBar'
+import { Map } from '@/components/map/Map'
+import { BusinessesFilters } from '@/components/business/BusinessesFilters'
 import { locales } from '@/i18n/config'
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
 
-// Mark as dynamic since we're using searchParams
 export const dynamic = 'force-dynamic'
+
+function FiltersFallback() {
+  return (
+    <div className="h-24 animate-pulse rounded-sm bg-fuchsia-950/40" aria-hidden />
+  )
+}
 
 export default async function BusinessesPage({
   params: { locale },
@@ -19,10 +27,10 @@ export default async function BusinessesPage({
   searchParams: { q?: string; type?: string; city?: string }
 }) {
   setRequestLocale(locale)
-  const t = await getTranslations()
-  
-  let businesses = null
-  
+  const t = await getTranslations('business')
+
+  let businesses: any[] | null = null
+
   if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
     try {
       const supabase = await createClient()
@@ -51,42 +59,62 @@ export default async function BusinessesPage({
     }
   }
 
+  const mapMarkers =
+    businesses?.filter((b) => b.latitude && b.longitude).map((b) => ({
+      id: b.id,
+      lat: Number(b.latitude),
+      lng: Number(b.longitude),
+      title: b.name,
+      description: b.city,
+    })) ?? []
+
+  const list = businesses ?? []
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-8">{t('business.title')}</h1>
-      
-      <div className="mb-8">
-        <SearchBar />
+    <div className="min-h-screen">
+      <div className="border-b border-cyan-500/15 bg-gradient-to-r from-club-950 via-fuchsia-950/20 to-club-950">
+        <div className="mx-auto max-w-6xl px-4 py-10">
+          <h1 className="font-display text-3xl font-semibold tracking-tight text-transparent bg-gradient-to-r from-amber-200 via-fuchsia-200 to-cyan-300 bg-clip-text md:text-4xl">
+            {t('title')}
+          </h1>
+          <p className="mt-2 max-w-2xl text-pretty text-zinc-400">
+            Browse the registry on the chart, then read each listing below.
+          </p>
+          <div className="mt-8 max-w-2xl">
+            <SearchBar tone="disco" />
+          </div>
+          <div className="mt-6">
+            <Suspense fallback={<FiltersFallback />}>
+              <BusinessesFilters />
+            </Suspense>
+          </div>
+        </div>
       </div>
 
-      {/* Filters */}
-      <div className="mb-8 flex flex-wrap gap-4">
-        <select className="px-4 py-2 border rounded">
-          <option value="">All Types</option>
-          <option value="restaurant">Restaurant</option>
-          <option value="retail">Retail</option>
-          <option value="ecommerce">E-commerce</option>
-          <option value="service">Service</option>
-        </select>
-        <input
-          type="text"
-          placeholder="Filter by city..."
-          className="px-4 py-2 border rounded"
-        />
-      </div>
+      <div className="mx-auto max-w-6xl px-4 py-10">
+        <div className="mb-10">
+          <h2 className="mb-3 font-club text-xs font-bold uppercase tracking-[0.35em] text-fuchsia-400">
+            Map
+          </h2>
+          <Map
+            markers={mapMarkers}
+            height="420px"
+            className="w-full border-fuchsia-500/30 shadow-neon-fuchsia"
+          />
+        </div>
 
-      {/* Business List */}
-      {businesses && businesses.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {businesses.map((business) => (
-            <BusinessCard key={business.id} business={business} />
-          ))}
-        </div>
-      ) : (
-        <div className="text-center py-12">
-          <p className="text-gray-500 text-lg">No businesses found.</p>
-        </div>
-      )}
+        {list.length > 0 ? (
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {list.map((business) => (
+              <BusinessCard key={business.id} business={business} />
+            ))}
+          </div>
+        ) : (
+          <div className="china-corners relative overflow-hidden rounded-sm border border-amber-400/20 bg-club-900/80 px-8 py-16 text-center shadow-hub backdrop-blur-sm">
+            <p className="font-display text-lg text-zinc-200">{t('emptyHint')}</p>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

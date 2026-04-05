@@ -1,37 +1,105 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Link } from '@/components/ui/Link'
-import { SearchBar } from '@/components/search/SearchBar'
 import { BusinessCard } from '@/components/business/BusinessCard'
 import { ServiceCard } from '@/components/services/ServiceCard'
+import { ScrollMapShell } from '@/components/home/ScrollMapShell'
 import { createClient } from '@/lib/supabase/server'
+import { prisma } from '@/lib/prisma'
+import { businessToCard, serviceToCard } from '@/lib/mappers/prismaToCard'
 import { locales } from '@/i18n/config'
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
 
-// Mark as dynamic since we're fetching data from Supabase
 export const dynamic = 'force-dynamic'
 
 export default async function HomePage({
-  params: { locale }
+  params: { locale },
 }: {
   params: { locale: string }
 }) {
-  // Enable static rendering
   setRequestLocale(locale)
-  
-  const t = await getTranslations()
-  
-  let businesses = null
-  let services = null
 
-  // Only fetch data if Supabase is configured
-  if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+  const t = await getTranslations()
+
+  let mapMarkers: {
+    id: string
+    lat: number
+    lng: number
+    title: string
+    description?: string
+  }[] = []
+
+  let businesses: ReturnType<typeof businessToCard>[] | null = null
+  let services: ReturnType<typeof serviceToCard>[] | null = null
+
+  const usePrisma = Boolean(process.env.DATABASE_URL)
+
+  if (usePrisma) {
+    try {
+      const mapRows = await prisma.business.findMany({
+        where: {
+          status: 'active',
+          latitude: { not: null },
+          longitude: { not: null },
+        },
+        select: {
+          id: true,
+          name: true,
+          city: true,
+          businessType: true,
+          latitude: true,
+          longitude: true,
+        },
+        take: 400,
+      })
+
+      mapMarkers = mapRows.map((b) => ({
+        id: b.id,
+        lat: Number(b.latitude),
+        lng: Number(b.longitude),
+        title: b.name,
+        description: [b.city, b.businessType].filter(Boolean).join(' · '),
+      }))
+
+      const feat = await prisma.business.findMany({
+        where: { featured: true, status: 'active' },
+        take: 6,
+      })
+      businesses = feat.length ? feat.map(businessToCard) : null
+
+      const svc = await prisma.serviceProvider.findMany({
+        where: { verified: true, status: 'active' },
+        orderBy: { rating: 'desc' },
+        take: 6,
+      })
+      services = svc.length ? svc.map(serviceToCard) : null
+    } catch (error) {
+      console.error('Home Prisma fetch:', error)
+    }
+  } else if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
     try {
       const supabase = await createClient()
 
-      // Fetch featured businesses
+      const mapResult = await supabase
+        .from('businesses')
+        .select('id, name, city, business_type, latitude, longitude')
+        .eq('status', 'active')
+        .not('latitude', 'is', null)
+        .not('longitude', 'is', null)
+        .limit(400)
+
+      if (mapResult.data) {
+        mapMarkers = mapResult.data.map((b) => ({
+          id: b.id,
+          lat: Number(b.latitude),
+          lng: Number(b.longitude),
+          title: b.name,
+          description: [b.city, b.business_type].filter(Boolean).join(' · '),
+        }))
+      }
+
       const businessesResult = await supabase
         .from('businesses')
         .select('*')
@@ -39,9 +107,8 @@ export default async function HomePage({
         .eq('status', 'active')
         .limit(6)
 
-      businesses = businessesResult.data
+      businesses = businessesResult.data as unknown as ReturnType<typeof businessToCard>[] | null
 
-      // Fetch featured service providers
       const servicesResult = await supabase
         .from('service_providers')
         .select('*')
@@ -50,69 +117,69 @@ export default async function HomePage({
         .order('rating', { ascending: false })
         .limit(6)
 
-      services = servicesResult.data
+      services = servicesResult.data as unknown as ReturnType<typeof serviceToCard>[] | null
     } catch (error) {
-      // Silently fail during build if Supabase is not configured
       console.error('Error fetching data:', error)
     }
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Hero Section */}
-      <section className="text-center mb-12">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
-          {t('common.welcome')}
-        </h1>
-        <p className="text-xl text-gray-600 mb-8">
-          Your comprehensive guide to starting a business in Germany
-        </p>
-        <SearchBar />
-      </section>
+    <div className="min-h-screen">
+      <ScrollMapShell markers={mapMarkers} />
 
-      {/* Quick Links */}
-      <section className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
-        <Link href="/businesses" className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
-          <h3 className="text-xl font-semibold mb-2">{t('nav.businesses')}</h3>
-          <p className="text-gray-600">Explore businesses in Germany</p>
-        </Link>
-        <Link href="/services" className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
-          <h3 className="text-xl font-semibold mb-2">{t('nav.services')}</h3>
-          <p className="text-gray-600">Find service providers</p>
-        </Link>
-        <Link href="/real-estate" className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
-          <h3 className="text-xl font-semibold mb-2">{t('nav.realEstate')}</h3>
-          <p className="text-gray-600">Browse properties</p>
-        </Link>
-        <Link href="/resources" className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
-          <h3 className="text-xl font-semibold mb-2">{t('nav.resources')}</h3>
-          <p className="text-gray-600">Access guides and tools</p>
-        </Link>
-      </section>
+      <div className="mx-auto max-w-6xl px-4 py-14">
+        {businesses && businesses.length > 0 && (
+          <section className="mb-16">
+            <div className="mb-8 flex flex-col gap-2 border-b border-fuchsia-500/20 pb-6 md:flex-row md:items-end md:justify-between">
+              <div>
+                <h2 className="font-display text-2xl font-semibold text-neon-gold md:text-3xl">
+                  Featured businesses
+                </h2>
+                <p className="mt-1 text-sm text-zinc-400">
+                  Highlights along the map — add more from your dashboard.
+                </p>
+              </div>
+              <Link
+                href="/businesses"
+                className="font-club text-xs font-bold uppercase tracking-widest text-cyan-400 transition hover:text-fuchsia-300"
+              >
+                {t('nav.businesses')} →
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {businesses.map((business) => (
+                <BusinessCard key={business.id} business={business} />
+              ))}
+            </div>
+          </section>
+        )}
 
-      {/* Featured Businesses */}
-      {businesses && businesses.length > 0 && (
-        <section className="mb-12">
-          <h2 className="text-3xl font-bold mb-6">Featured Businesses</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {businesses.map((business) => (
-              <BusinessCard key={business.id} business={business} />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Featured Services */}
-      {services && services.length > 0 && (
-        <section className="mb-12">
-          <h2 className="text-3xl font-bold mb-6">Top Service Providers</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service) => (
-              <ServiceCard key={service.id} service={service} />
-            ))}
-          </div>
-        </section>
-      )}
+        {services && services.length > 0 && (
+          <section>
+            <div className="mb-8 flex flex-col gap-2 border-b border-fuchsia-500/20 pb-6 md:flex-row md:items-end md:justify-between">
+              <div>
+                <h2 className="font-display text-2xl font-semibold text-neon-gold md:text-3xl">
+                  Top service providers
+                </h2>
+                <p className="mt-1 text-sm text-zinc-400">
+                  Verified partners for legal, tax, and operations.
+                </p>
+              </div>
+              <Link
+                href="/services"
+                className="font-club text-xs font-bold uppercase tracking-widest text-cyan-400 transition hover:text-fuchsia-300"
+              >
+                {t('nav.services')} →
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {services.map((service) => (
+                <ServiceCard key={service.id} service={service} />
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
     </div>
   )
 }

@@ -40,32 +40,37 @@ export function BusinessCard({ business }: BusinessCardProps) {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition p-6">
-      <h3 className="text-xl font-semibold mb-2">{getName()}</h3>
+    <div className="rounded-lg border border-zinc-800 bg-club-900/60 p-6 shadow-club transition hover:border-fuchsia-500/40 hover:shadow-neon-fuchsia">
+      <h3 className="mb-2 font-display text-xl font-semibold text-zinc-100">{getName()}</h3>
       {getDescription() && (
-        <p className="text-gray-600 mb-4 line-clamp-2">{getDescription()}</p>
+        <p className="mb-4 line-clamp-2 text-sm text-zinc-400">{getDescription()}</p>
       )}
-      <div className="space-y-2 text-sm text-gray-500">
+      <div className="space-y-2 text-sm text-zinc-500">
         <div className="flex items-center">
-          <MapPin size={16} className="mr-2" />
-          <span>{business.city}</span>
+          <MapPin size={16} className="mr-2 text-fuchsia-400/80" />
+          <span className="text-zinc-300">{business.city}</span>
         </div>
         {business.phone && (
           <div className="flex items-center">
-            <Phone size={16} className="mr-2" />
+            <Phone size={16} className="mr-2 text-cyan-400/80" />
             <span>{business.phone}</span>
           </div>
         )}
         {business.email && (
           <div className="flex items-center">
-            <Mail size={16} className="mr-2" />
+            <Mail size={16} className="mr-2 text-cyan-400/80" />
             <span className="truncate">{business.email}</span>
           </div>
         )}
         {business.website && (
           <div className="flex items-center">
-            <Globe size={16} className="mr-2" />
-            <a href={business.website} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline truncate">
+            <Globe size={16} className="mr-2 text-cyan-400/80" />
+            <a
+              href={business.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="truncate text-cyan-400 hover:text-fuchsia-300 hover:underline"
+            >
               {business.website}
             </a>
           </div>
@@ -73,7 +78,7 @@ export function BusinessCard({ business }: BusinessCardProps) {
       </div>
       <Link
         href={`/${locale}/businesses/${business.id}`}
-        className="mt-4 inline-block text-primary-600 hover:text-primary-700 font-semibold"
+        className="mt-4 inline-block font-club text-xs font-bold uppercase tracking-wider text-fuchsia-400 transition hover:text-cyan-300"
       >
         View Details →
       </Link>

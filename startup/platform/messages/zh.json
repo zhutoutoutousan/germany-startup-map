@@ -23,7 +23,10 @@
     "realEstate": "房地产",
     "resources": "资源",
     "about": "关于",
-    "contact": "联系"
+    "contact": "联系",
+    "community": "社区",
+    "founders": "创始人",
+    "messages": "消息"
   },
   "auth": {
     "signIn": "登录",
@@ -37,8 +40,29 @@
     "signInWithEmail": "使用电子邮件登录",
     "signUpWithEmail": "使用电子邮件注册"
   },
+  "home": {
+    "hubKicker": "德国创业地图",
+    "hubTitle": "市井长卷 · 一图总览",
+    "hubSubtitle": "如手卷横展：企业、服务、房产与指南叠在同一幅可游观的图景里，疏密有致，慢慢读、慢慢走。",
+    "infoCenter": "总览与入口",
+    "tileBusinesses": "企业",
+    "tileServices": "服务",
+    "tileRealEstate": "房产",
+    "tileResources": "资源",
+    "searchPlaceholder": "搜索企业、服务、房源…",
+    "searchAction": "搜索",
+    "emptyMapHint": "卷上尚无标点。为商户填写经纬度后，即可在此浮现。"
+  },
   "business": {
     "title": "企业",
+    "allTypes": "全部类型",
+    "typeRestaurant": "餐饮",
+    "typeRetail": "零售",
+    "typeEcommerce": "电商",
+    "typeService": "服务",
+    "cityFilterPlaceholder": "城市名称…",
+    "applyFilters": "筛选",
+    "emptyHint": "可尝试清空筛选条件，或在后台为商户补充坐标数据。",
     "addBusiness": "添加企业",
     "businessName": "企业名称",
     "description": "描述",
@@ -85,5 +109,41 @@
     "message": "消息",
     "yourEmail": "您的电子邮件",
     "yourPhone": "您的电话"
+  },
+  "community": {
+    "title": "社区",
+    "newPost": "发帖",
+    "needsDb": "请配置 DATABASE_URL 以加载帖子。",
+    "empty": "暂无帖子，欢迎首发。",
+    "newTitle": "写帖子",
+    "fieldTitle": "标题",
+    "fieldBody": "正文",
+    "publish": "发布"
+  },
+  "founders": {
+    "title": "创始人匹配",
+    "subtitle": "在德国寻找联合创始人与合作者。",
+    "signInHint": "登录后可发送连接请求并查看收件箱。",
+    "needsDb": "创始人资料需要 DATABASE_URL。",
+    "empty": "暂无创始人资料。",
+    "introLabel": "简短介绍（可选）",
+    "connect": "发送请求",
+    "sent": "已发送。",
+    "inbox": "连接请求",
+    "accept": "接受",
+    "decline": "拒绝"
+  },
+  "messages": {
+    "title": "消息",
+    "subtitle": "类似邮件的对话线程。",
+    "signInHint": "登录后可收发消息。",
+    "needsDb": "消息功能需要 DATABASE_URL。",
+    "empty": "暂无会话。接受创始人请求后会开启线程。",
+    "threadWith": "与 {name}",
+    "back": "全部消息",
+    "composeLabel": "消息",
+    "placeholder": "输入消息…",
+    "send": "发送",
+    "error": "发送失败。"
   }
 }
