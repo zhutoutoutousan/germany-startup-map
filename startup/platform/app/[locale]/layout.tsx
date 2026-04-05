@@ -5,6 +5,7 @@ import { locales } from '@/i18n/config'
 import '../globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
+import { ClientAnalytics } from '@/components/analytics/ClientAnalytics'
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
@@ -27,17 +28,18 @@ export default async function LocaleLayout({
   const messages = await getMessages()
 
   return (
-    <html lang={locale}>
-      <body>
-        <NextIntlClientProvider messages={messages}>
+    <html lang={locale} suppressHydrationWarning>
+      <body className="font-sans antialiased" suppressHydrationWarning>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <div className="min-h-screen flex flex-col">
             <Navbar />
-            <main className="flex-grow">
+            <main className="relative z-0 flex flex-grow flex-col min-h-0">
               {children}
             </main>
             <Footer />
           </div>
         </NextIntlClientProvider>
+        <ClientAnalytics />
       </body>
     </html>
   )
